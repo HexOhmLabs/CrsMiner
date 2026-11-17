@@ -1,5 +1,7 @@
 # Flashing the two final CRSminer builds — no Arduino IDE
 
+[Ελληνική έκδοση](FLASHING_GR.md)
+
 Use the **[ESP Web Tool](https://esptool.spacehuhn.com/)** in a desktop Chromium-based browser with Web Serial support (e.g. Chrome or Edge), a data-capable USB cable and a supported **classic ESP32 with 4 MB flash**. The tool runs locally in your browser. Disconnect other serial monitors first.
 
 > ⚠️ **Choose the correct board before flashing.** The **ESP32** build targets the classic ESP32 Dev Module. The **CYD** build was compiled for `esp32:esp32:jczn_2432s028r` (ESP32-2432S028R, the two-USB-port ST7789 variant described in the sketch). The binaries and partitions are **not interchangeable**. Do not flash onto ESP8266, ESP32-S3, a different display/pin mapping, or an unknown-size flash chip.

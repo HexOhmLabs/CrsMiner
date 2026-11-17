@@ -1,5 +1,7 @@
 # CRSminer Pi — working Raspberry Pi + USB Block Erupter miner
 
+[Ελληνική έκδοση](README_GR.md)
+
 **Status: built and confirmed working on real hardware by the project owner.** This is the headless USB ASIC edition of **CRSminer by HexOhm**. The owner reports approximately **300 MH/s** when using a Raspberry Pi with a USB Block Erupter. Actual instantaneous hashrate varies by USB ASIC and operating conditions.
 
 The Pi manages Wi-Fi, pool/worker configuration and the web API. The **USB Block Erupter performs mining**, using the classic **cgminer 3.7.2** application. The included shell/Python programs are the original working files supplied for the project; cgminer itself is downloaded and compiled by the Pi.

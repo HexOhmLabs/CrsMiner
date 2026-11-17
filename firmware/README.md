@@ -1,5 +1,7 @@
 # CRSminer mining implementations — HexOhm
 
+[Ελληνική έκδοση](README_GR.md)
+
 This folder contains **all four mining implementations**. The adjacent `monitoring/` folder contains only monitoring/scanning applications.
 
 | Platform | Source code and installation | Additional downloads |

@@ -1,5 +1,7 @@
 # CRS Mining
 
+[Ελληνική έκδοση](README_GR.md)
+
 **Native Android monitor for CRSminer ESP32 and ESP32-S3 devices**  
 **Version 1.2 · 2026 · by HexOhm (HexΩhm)**
 

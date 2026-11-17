@@ -1,5 +1,7 @@
 # Included versions and status
 
+[Ελληνική έκδοση](VERSIONS_AND_STATUS_GR.md)
+
 HexOhm's CRSminer family contains **four mining platforms**: classic ESP32, CYD, Raspberry Pi with a USB Block Erupter, and Android CPU mining. All four miner sources now live in [`firmware/`](../firmware/README.md), while monitors/scanners live in [`monitoring/`](../monitoring/).
 
 | Component | Edition | Status |

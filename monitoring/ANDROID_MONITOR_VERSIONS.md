@@ -1,5 +1,7 @@
 # CRS Mining Android Monitor: v1.2 and v1.3 development source
 
+[Ελληνική έκδοση](ANDROID_MONITOR_VERSIONS_GR.md)
+
 The Android **monitor/scanner** is a different app from the **CRSminer Android CPU miner**.
 
 ## v1.2 — recommended working monitor

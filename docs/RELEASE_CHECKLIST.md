@@ -1,5 +1,7 @@
 # First GitHub publication checklist
 
+[Ελληνική έκδοση](RELEASE_CHECKLIST_GR.md)
+
 1. Use the existing public GitHub repository `HexOhmLabs/CrsMiner`; preserve the existing README and LICENSE when updating.
 2. Upload the **contents** of this revised repository ZIP, preserving the root README, directory structure and hidden `.github` directory. For an incremental upload use the companion patch ZIP instead of replacing unrelated files.
 3. Review the README and licensing; check no credentials or private data were added locally.

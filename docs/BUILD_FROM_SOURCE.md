@@ -1,5 +1,7 @@
 # Rebuilding the ESP and CYD sketch sources
 
+[Ελληνική έκδοση](BUILD_FROM_SOURCE_GR.md)
+
 Sources under `firmware/ESP32/source/CRSminer/CRSminer.ino` and `firmware/CYD/source/CRSminer_CYD/CRSminer_CYD.ino` are **byte-identical to the author's final submitted .ino files**, renamed to Arduino IDE–compatible sketch folder/file pairs. The `.bin` files were **not regenerated** from these renamed copies.
 
 The author supplied builds made using **Arduino-ESP32 core 3.3.12**:

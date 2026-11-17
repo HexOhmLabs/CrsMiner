@@ -1,5 +1,7 @@
 # CRSminer — implementation gallery
 
+[Ελληνική έκδοση](IMPLEMENTATIONS_GR.md)
+
 The screenshots below document the actual working CRSminer applications. Personal network identifiers and wallet strings have been concealed in publication images. Hardware presentation images are edited artwork, not wiring diagrams.
 
 ## 1 · Classic ESP32 SHA-256d miner

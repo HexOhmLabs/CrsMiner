@@ -1,5 +1,7 @@
 # CRSminer for Android v0.4 - Gradle Setup v3 (HOME error fixed)
 
+[Ελληνική έκδοση](BUILD_FIX_README_GR.md)
+
 Build-setup only; mining, UI, foreground service, widget, JNI/C++ and discovery sources remain identical to v0.4. Gradle 8.9, AGP 8.7.3 and the Android SDK requirements have not changed.
 
 ## What was wrong

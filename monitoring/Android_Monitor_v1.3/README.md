@@ -1,5 +1,7 @@
 **Experimental v1.3 source for independent testing; v1.2 is the owner-tested scanner.**
 
+[Ελληνική έκδοση](README_GR.md)
+
 # CRS Mining Monitor v1.3 · ESP and Android miner discovery
 
 Derived from user's archived v1.2 monitor source. Adds TCP port **8080** detection in addition to unchanged ESP32 port **80**, preserving all existing monitoring UI and endpoint formats. No existing firmware is altered; this project retains the package `com.hexohm.crsmining` and, once built and installed, updates the existing monitor.

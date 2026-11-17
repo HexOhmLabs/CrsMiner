@@ -1,5 +1,7 @@
 # Monitoring: recommended and development builds
 
+[Ελληνική έκδοση](MONITORING_GR.md)
+
 ## Recommended Windows Web Monitor — v1.6.1
 
 In [`monitoring/Windows_Web_v1.6.1/`](../monitoring/Windows_Web_v1.6.1/), run `START_CRS_MINING_WEB.bat` on Windows. It starts a local web dashboard and Python bridge to discover and monitor ESP miners (port 80) and compatible Android CPU miners (port 8080). The selected **v1.6.1** uses conservative requests and staggered polling. It does **not** perform automatic full subnet scans: run manual discovery sparingly, then reuse saved miner IPs.

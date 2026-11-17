@@ -1,5 +1,7 @@
 # CRSminer for Android — HexOhm
 
+[Ελληνική έκδοση](README_GR.md)
+
 **Version 0.4.0-dev source (HexOhm).** This is real, native SHA-256d CPU hashing with Stratum V1 job handling; **not a simulator**. The project owner successfully built and ran the Android miner on a physical phone and verified pool-accepted shares, with observed performance around 6.6 MH/s on the tested device. The archived source package here includes the previously delivered startup-crash fix and restores the previously requested input-field height correction (48 dp rather than 48 raw pixels). This exact repackaged source has **not been independently rebuilt in the GitHub publication process**; it is not an audited or commercially supported miner.
 
 ## Build (Android Studio)

@@ -1,8 +1,10 @@
 # CRSminer · HexOhm
 
+**🇬🇷 Ελληνική τεκμηρίωση:** [Πλήρης οδηγός στα ελληνικά](README_GR.md) · [ESP32](docs/ESP32_USER_GUIDE_GR.md) · [CYD](docs/CYD_USER_GUIDE_GR.md) · [Raspberry Pi](firmware/Raspberry_Pi_USB_ASIC/README_GR.md) · [Android miner](firmware/Android_CPU_Miner_v0.4/README_GR.md) · [Monitors](docs/MONITORING_GR.md)
+
 **Real SHA-256d mining on ESP32, CYD, Android CPU and Raspberry Pi + USB Block Erupter, with companion fleet monitors for Windows, Android and the browser.**
 
-[**Get started**](#choose-your-miner) · [**Build the Raspberry Pi miner**](firmware/Raspberry_Pi_USB_ASIC/README.md) · [**Flash ESP32/CYD in your browser**](docs/FLASHING.md) · [**Οδηγίες στα Ελληνικά**](docs/ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ_GR.md) · [**Android CPU miner**](#crsminer-for-android--cpu-mining) · [**Monitor your fleet**](#local-monitoring) · [**Implementation gallery**](docs/IMPLEMENTATIONS.md) · [**Android monitor versions**](monitoring/ANDROID_MONITOR_VERSIONS.md) · [**Source builds**](docs/BUILD_FROM_SOURCE.md)
+[**Get started**](#choose-your-miner) · [**Build the Raspberry Pi miner**](firmware/Raspberry_Pi_USB_ASIC/README.md) · [**Flash ESP32/CYD in your browser**](docs/FLASHING.md) · [**ESP32 operating guide**](docs/ESP32_USER_GUIDE.md) · [**CYD touch & screen guide**](docs/CYD_USER_GUIDE.md) · [**Οδηγίες στα Ελληνικά**](docs/ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ_GR.md) · [**Android CPU miner**](#crsminer-for-android--cpu-mining) · [**Monitor your fleet**](#local-monitoring) · [**Implementation gallery**](docs/IMPLEMENTATIONS.md) · [**Android monitor versions**](monitoring/ANDROID_MONITOR_VERSIONS.md) · [**Source builds**](docs/BUILD_FROM_SOURCE.md)
 
 <p align="center">
   <img src="images/esp32-beautified.png" width="54%" alt="HexOhm CRSminer ESP32 studio presentation" />
@@ -66,6 +68,15 @@ It provides configurable miner ID, worker, wallet and pool settings, adjustable 
 <img src="images/esp-dashboard-sanitized.jpg" width="880" alt="ESP32 miner live web dashboard showing SHA-256 hashrate and shares with network identifiers concealed" />
 
 *Live ESP32 telemetry, including per-core hashrate, shares, difficulty, temperature and pool status. Network identifiers have been concealed.*
+
+## Operating instructions — ESP32 and CYD
+
+After flashing, use these step-by-step guides for the first Wi-Fi/Stratum pool setup and daily operation:
+
+- **[Classic ESP32 user guide](docs/ESP32_USER_GUIDE.md)** — WiFiManager onboarding, pool/wallet/worker, web dashboard, blue diagnostic LED modes, BOOT factory reset and troubleshooting.
+- **[CYD user guide](docs/CYD_USER_GUIDE.md)** — CYD setup, touchscreen zones, **tap the miner mascot to turn off the backlight after two minutes (mining continues)**, tap elsewhere for system information, wake on touch, and RGB status indicators.
+
+These are instructions for features **already present in the published builds**, not new firmware functionality.
 
 ## Flash without Arduino IDE
 

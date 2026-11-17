@@ -1,5 +1,7 @@
 # Security, privacy and image policy
 
+[Ελληνική έκδοση](SECURITY_AND_PRIVACY_GR.md)
+
 This public repository contains **no user-provided Wi-Fi credentials** and no deliberately published wallet addresses, personal MACs or private LAN IP addresses in the curated documentation pictures. The showcased screenshots have been redacted or tightly cropped to conceal displayed local IP/MAC values and wallet strings. Studio device images have also been sanitized where their screens show identifiers. The source code and compiled firmwares are left unchanged, and users are prompted to supply their own pool/account values.
 
 - Do not upload your actual `crsminer.txt`, saved Wi-Fi passwords, pool account passwords, wallet secrets, serial logs, or local `known_miners.json` to a public repository.
