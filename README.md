@@ -37,7 +37,7 @@ Raspberry Pi running a USB Block Erupter via <strong>cgminer 3.7.2</strong>, wit
 
 Unlike the ESP32 and CYD builds, this miner is **not flashed with a `.bin`**. The four supplied scripts/configuration files are copied to the Raspberry Pi OS Lite boot partition; the miner installs and compiles cgminer on first boot. The Pi also serves a compatible local `/api/status` endpoint for the fleet monitors.
 
-These are the owner's **final working builds**. The original binary contents were not changed; only the public filenames for the merged files were updated. The correct board matters: **do not exchange ESP32 and CYD binaries**. The CYD binary targets the specific two-USB-port ESP32-2432S028R ST7789 variant described in the sketch; other CYD versions may need recompilation.
+The correct board matters: **do not exchange ESP32 and CYD binaries**. The CYD binary targets the specific two-USB-port ESP32-2432S028R ST7789 variant described in the sketch; other CYD versions may need recompilation.
 
 ### ESP32 browser dashboard
 
