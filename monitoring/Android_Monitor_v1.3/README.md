@@ -1,3 +1,5 @@
+**Experimental v1.3 source for independent testing; v1.2 is the owner-tested scanner.**
+
 # CRS Mining Monitor v1.3 · ESP and Android miner discovery
 
 Derived from user's archived v1.2 monitor source. Adds TCP port **8080** detection in addition to unchanged ESP32 port **80**, preserving all existing monitoring UI and endpoint formats. No existing firmware is altered; this project retains the package `com.hexohm.crsmining` and, once built and installed, updates the existing monitor.
@@ -20,7 +22,7 @@ The app automatically scans the phone's active Wi-Fi or Ethernet LAN for compati
 - Each compact tile shows the miner's `.local` URL followed by the worker name, large hash rate with auto-scaled H/s units, a recent mini trend graph, green accepted share count, red rejected share count, pool URL, and coin wallet address.
 - Green = connected and hashing, amber = attention/pool offline/not hashing, red = unreachable or critical miner diagnostic.
 - Top summary: current fleet hash rate, online device count and accepted/rejected shares.
-- Settings in ⋮ overflow menu: **Day/Night**, **2/3/4 tiles per row**, **About → Version 1.1 · 2026 · by HexOhm**.
+- Settings in ⋮ overflow menu: **Day/Night**, **2/3/4 tiles per row**, **About → Version 1.2 · 2026 · by HexOhm**.
 - Auto-refresh every **five seconds** while the screen is open; tap ↻ to rescan the subnet.
 - Tap a tile for extended details (uptime, best difficulty, pool difficulty, RSSI, ESP32 reported temperature, SHA engine mode, jobs, errors, and diagnostics); open the miner's existing dashboard from that dialog.
 - Long-press a tile or use the detail dialog to copy the **full** configured wallet address. Long addresses on tiles are shortened **only for display**.

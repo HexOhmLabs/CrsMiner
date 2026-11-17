@@ -1,0 +1,16 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.hexohm.crsminerandroid'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.hexohm.crsminerandroid'
+        minSdk 26
+        targetSdk 35
+        versionCode 3
+        versionName '0.4.0-dev'
+        externalNativeBuild { cmake { cppFlags '-std=c++17 -O3' } }
+        ndk { abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64' }
+    }
+    externalNativeBuild { cmake { path 'src/main/cpp/CMakeLists.txt' } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}

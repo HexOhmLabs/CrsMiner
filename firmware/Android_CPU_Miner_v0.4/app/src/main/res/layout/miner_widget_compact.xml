@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@drawable/widget_panel">
+    <!-- Existing HexOhm circuit logo, placed behind all readable/interactive content.
+         Low alpha is applied to the view, not to the rest of the widget. -->
+    <ImageView android:id="@+id/widget_watermark"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_gravity="center" android:padding="10dp"
+        android:src="@drawable/hexohm_widget_logo" android:scaleType="fitCenter"
+        android:alpha="0.075" android:contentDescription="@null"/>
+    <LinearLayout android:id="@+id/widget_content" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical"
+        android:gravity="center_vertical" android:padding="7dp">
+        <TextView android:id="@+id/widget_title" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="CRSminer  ·  HexOhm"
+            android:textColor="#DAB65D" android:textSize="11sp"
+            android:textStyle="bold" android:singleLine="true" android:ellipsize="end"/>
+        <TextView android:id="@+id/widget_stage" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Stopped"
+            android:visibility="gone" android:textColor="#AFC3D4"
+            android:textSize="10sp" android:singleLine="true" android:ellipsize="end"/>
+        <TextView android:id="@+id/widget_rate" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="0.00 H/s"
+            android:textColor="#F1F4F8" android:textSize="20sp"
+            android:textStyle="bold" android:singleLine="true" android:ellipsize="end"/>
+        <TextView android:id="@+id/widget_shares" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Accepted 0  •  Rejected 0"
+            android:visibility="gone" android:textColor="#AFC3D4"
+            android:textSize="10sp" android:singleLine="true" android:ellipsize="end"/>
+        <LinearLayout android:id="@+id/widget_buttons" android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="3dp">
+            <TextView android:id="@+id/widget_start" android:layout_width="0dp"
+                android:layout_height="29dp" android:layout_weight="1"
+                android:background="@drawable/widget_button" android:gravity="center"
+                android:text="Start" android:textSize="11sp"
+                android:textColor="#10151D" android:textStyle="bold"/>
+            <TextView android:id="@+id/widget_stop" android:layout_width="0dp"
+                android:layout_height="29dp" android:layout_weight="1"
+                android:layout_marginStart="6dp" android:background="@drawable/widget_button"
+                android:gravity="center" android:text="Stop"
+                android:textSize="11sp" android:textColor="#10151D"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

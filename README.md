@@ -1,21 +1,30 @@
 # CRSminer · HexOhm
 
-**Real SHA-256d mining on ESP32, CYD and Raspberry Pi + USB Block Erupter, with companion fleet monitors for Windows, Android and the browser.**
+**Real SHA-256d mining on ESP32, CYD, Android CPU and Raspberry Pi + USB Block Erupter, with companion fleet monitors for Windows, Android and the browser.**
 
-[**Get started**](#choose-your-miner) · [**Build the Raspberry Pi miner**](monitoring/Raspberry_Pi_USB_ASIC/README.md) · [**Flash ESP32/CYD in your browser**](docs/FLASHING.md) · [**Οδηγίες στα Ελληνικά**](docs/ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ_GR.md) · [**Monitor your fleet**](#local-monitoring) · [**Implementation gallery**](docs/IMPLEMENTATIONS.md) · [**Source builds**](docs/BUILD_FROM_SOURCE.md)
+[**Get started**](#choose-your-miner) · [**Build the Raspberry Pi miner**](firmware/Raspberry_Pi_USB_ASIC/README.md) · [**Flash ESP32/CYD in your browser**](docs/FLASHING.md) · [**Οδηγίες στα Ελληνικά**](docs/ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ_GR.md) · [**Android CPU miner**](#crsminer-for-android--cpu-mining) · [**Monitor your fleet**](#local-monitoring) · [**Implementation gallery**](docs/IMPLEMENTATIONS.md) · [**Android monitor versions**](monitoring/ANDROID_MONITOR_VERSIONS.md) · [**Source builds**](docs/BUILD_FROM_SOURCE.md)
 
 <p align="center">
   <img src="images/esp32-beautified.png" width="54%" alt="HexOhm CRSminer ESP32 studio presentation" />
   <img src="images/cyd-landscape-beautified-sanitized.png" width="44%" alt="HexOhm CYD mining display studio presentation" />
 </p>
 
-<p align="center"><strong>Three working mining platforms · One HexOhm family · Local fleet monitoring</strong></p>
+<p align="center"><strong>Four working mining platforms · One HexOhm family · Local fleet monitoring</strong></p>
 
-**First public release.** The included ESP32, CYD, Raspberry Pi and monitoring implementations are the working editions confirmed by the project owner. Additional ESP board variants are outside this release. Source code and binaries are provided together wherever relevant.
+**Project source and downloads.** The ESP32, CYD, Raspberry Pi, Android CPU miner and monitoring applications are the working editions confirmed by the project owner. Additional ESP board variants are outside this release. Source code and binaries are provided together wherever relevant.
 
 > The studio device images are presentation artwork based on the actual hardware; use the board-specific flashing and hardware instructions, not artwork silkscreen, to determine compatibility.
 
 ## Choose your miner
+
+**All four mining implementations are under [`firmware/`](firmware/README.md)**, including the Raspberry Pi USB ASIC scripts and the complete Android Studio CPU miner project. Monitoring applications are kept separately in [`monitoring/`](monitoring/).
+
+| Mining device | Working edition | Source / setup | Ready-to-use files |
+|---|---|---|---|
+| Classic ESP32 | `CRSminer-14` | [Arduino sketch](firmware/ESP32/source/CRSminer/CRSminer.ino) | [Merged firmware](firmware/ESP32/merged/HexOhm_CRSminer_ESP32_Final_Merged.bin) |
+| CYD display ESP32 | `CRSminer_CYD-18` | [Arduino sketch](firmware/CYD/source/CRSminer_CYD/CRSminer_CYD.ino) | [Merged firmware](firmware/CYD/merged/HexOhm_CRSminer_CYD_Final_Merged.bin) |
+| Raspberry Pi + USB Block Erupter | `CRSminer Pi` · ~300 MH/s reported | [Complete installation guide & scripts](firmware/Raspberry_Pi_USB_ASIC/README.md) | [SD-card boot files](firmware/Raspberry_Pi_USB_ASIC/boot/) |
+| Android phone CPU miner | `v0.4.0` · ~6.6 MH/s observed | [Complete Android Studio source](firmware/Android_CPU_Miner_v0.4/) | [Debug APK](firmware/Android_CPU_Miner_v0.4/apk/CRSminer_for_Android_v0.4.0-dev_DEBUG.apk) |
 
 | ESP32 | CYD (Cheap Yellow Display) |
 |---|---|
@@ -31,13 +40,26 @@
 </td><td>
 <strong>CRSminer Pi — working hardware build</strong><br/>
 Raspberry Pi running a USB Block Erupter via <strong>cgminer 3.7.2</strong>, with approximately <strong>300 MH/s</strong> reported during actual operation. The live screenshot shows a momentary reading from a separate session; speed can vary with the stick and mining conditions.<br/><br/>
-<a href="monitoring/Raspberry_Pi_USB_ASIC/README.md"><strong>Complete SD-card installation and first-boot build guide</strong></a><br/>
-<a href="monitoring/Raspberry_Pi_USB_ASIC/boot/">Installation scripts and example configuration</a>
+<a href="firmware/Raspberry_Pi_USB_ASIC/README.md"><strong>Complete SD-card installation and first-boot build guide</strong></a><br/>
+<a href="firmware/Raspberry_Pi_USB_ASIC/boot/">Installation scripts and example configuration</a>
 </td></tr></table>
 
 Unlike the ESP32 and CYD builds, this miner is **not flashed with a `.bin`**. The four supplied scripts/configuration files are copied to the Raspberry Pi OS Lite boot partition; the miner installs and compiles cgminer on first boot. The Pi also serves a compatible local `/api/status` endpoint for the fleet monitors.
 
 The correct board matters: **do not exchange ESP32 and CYD binaries**. The CYD binary targets the specific two-USB-port ESP32-2432S028R ST7789 variant described in the sketch; other CYD versions may need recompilation.
+
+## CRSminer for Android — CPU mining
+
+<table><tr><td width="40%">
+<img src="images/android-cpu-miner-v0_4-sanitized.jpg" width="350" alt="CRSminer for Android running real SHA-256d CPU mining at 6.68 MH/s, with LAN address concealed"/>
+</td><td>
+<strong>CRSminer for Android v0.4 · HexOhm</strong><br/><br/>
+A standalone Android miner, <strong>not</strong> the Android fleet-monitoring application. It performs real SHA-256d hashing on the phone CPU, connects to compatible Stratum V1 pools and submits shares. In the owner's on-device tests it reached roughly <strong>6.6 MH/s</strong>, with mining accepted by the pool.<br/><br/>
+It provides configurable miner ID, worker, wallet and pool settings, adjustable CPU threads, an explicitly started foreground mining service and a resizable home-screen widget. While mining, the LAN status endpoint is available on <code>:8080/api/status</code> for compatible monitors.<br/><br/>
+<a href="firmware/Android_CPU_Miner_v0.4/README.md"><strong>Android Studio source and build instructions</strong></a>
+</td></tr></table>
+
+**Android Studio is required to rebuild the app.** The user-supplied [Android miner v0.4.0-dev debug APK](firmware/Android_CPU_Miner_v0.4/apk/CRSminer_for_Android_v0.4.0-dev_DEBUG.apk) is also included for developer testing. This is a **debug build**, not a signed production release; source-to-binary reproducibility has not been independently verified. The included Android Studio source includes the latest supplied `MainActivity.java` input-field height fix and the existing startup fix; confirm the built result on the target device before distributing a signed APK. Like all CPU mining, it can consume significant battery and generate heat.
 
 ### ESP32 browser dashboard
 
@@ -68,6 +90,8 @@ The CYD variant adds an on-device screen and real-time mining metrics. The examp
 
 ## Local monitoring
 
+**Android monitor version policy:** v1.2 is the confirmed working scanner; v1.3 source remains available for anyone who wants to build and test Android CPU miner discovery. The Android **CPU miner** itself is separately published as v0.4.0.
+
 <p align="center">
   <img src="images/fleet-monitor-english.jpg" width="66%" alt="CRSminer browser fleet monitor with multiple running ESP miners" />
   <img src="images/android-monitor-sanitized.jpg" width="30%" alt="CRS Mining Android monitor showing a mixed fleet" />
@@ -78,14 +102,15 @@ The CYD variant adds an on-device screen and real-time mining metrics. The examp
 | Component | Purpose | Included |
 |---|---|---|
 | [**CRS Mining Web for Windows v1.6.1**](monitoring/Windows_Web_v1.6.1/) | Staggered safe polling with manual discovery of ESP and compatible Android endpoints | Complete working package |
-| [**CRS Mining Android Monitor v1.3**](monitoring/Android_Monitor_v1.3/) | Android Studio source for LAN fleet monitoring and discovery | Working source project |
+| [**CRS Mining Android Monitor v1.2**](monitoring/Android_Monitor_v1.2/) | Recommended working Android scanner for ESP miners over LAN (port 80) | Owner-tested source project |
+| [**CRS Mining Android Monitor v1.3 development**](monitoring/Android_Monitor_v1.3/) | Optional port 8080 / Android CPU miner discovery enhancements | Experimental Android Studio source; not owner-tested |
 | [**Browser Fleet Scanner**](monitoring/Browser_Fleet_Scanner/CRSminer-Fleet-Scan.html) | One-file bilingual HTML dashboard with adjustable layout and LAN scanning | Working HTML tool |
 
-For the Windows monitor, **v1.6.1** is the published stable edition. For manual full-network scans, follow the recommended conservative settings; device reliability is the priority.
+For the Windows monitor, **v1.6.1** is the published stable edition. For Android monitoring, **v1.2** remains the recommended tested edition, while [v1.3](monitoring/ANDROID_MONITOR_VERSIONS.md) is offered as optional development source. For manual full-network scans, follow the recommended conservative settings; device reliability is the priority.
 
-See [Monitoring](docs/MONITORING.md) for usage and [Implementation gallery](docs/IMPLEMENTATIONS.md) for the complete walkthrough and additional real screenshots.
+See [Android Monitor versions](monitoring/ANDROID_MONITOR_VERSIONS.md) and [Monitoring](docs/MONITORING.md) for usage and [Implementation gallery](docs/IMPLEMENTATIONS.md) for the complete walkthrough and additional real screenshots.
 
-This first public repository does not include the separate Android CPU-mining application.
+The [CRSminer for Android CPU mining source](firmware/Android_CPU_Miner_v0.4/) is included separately from the [CRS Mining Android Monitor](monitoring/Android_Monitor_v1.2/). These are different applications, and neither is a substitute for the other.
 
 ## Hardware and functionality
 
@@ -95,6 +120,7 @@ This first public repository does not include the separate Android CPU-mining ap
 - Hashrate, accepted/rejected shares, best difficulty, device diagnostics and optional LED behavior.
 - CYD live screen for supported display hardware.
 - Working Raspberry Pi + USB Block Erupter (~300 MH/s reported), with cgminer 3.7.2 built on first boot.
+- Android CPU miner v0.4 with real SHA-256d, foreground service, resizable widget and read-only HTTP status on port 8080.
 - HTTP status endpoint `/api/status` on ESP and the Pi status-bridge design (network access only; not a public-facing service).
 
 **Mining is intended for learning and experimentation, not a promise of profit.** These devices have negligible hashrate compared with modern commercial ASIC miners. Pool and wallet configuration is supplied by users. Mining draws energy and generates heat.
@@ -104,8 +130,9 @@ This first public repository does not include the separate Android CPU-mining ap
 - **ESP32 final source:** `CRSminer-14.ino` from the final archive, published in Arduino-compatible `CRSminer/CRSminer.ino` form.
 - **CYD final source:** `CRSminer_CYD-18.ino` from the final archive, published in Arduino-compatible `CRSminer_CYD/CRSminer_CYD.ino` form.
 - **Arduino ESP32 core 3.3.12**, 4 MB flash for both binaries. Exact flash maps are from the supplied builds.
-- **Raspberry Pi working source:** the supplied four boot files, unchanged from the project owner's `CRSminer_Pi_usbAsic.zip`, with the setup instructions documented [here](monitoring/Raspberry_Pi_USB_ASIC/README.md). No precompiled cgminer is bundled.
-- The source files and compiled firmware binaries have been retained byte for byte from the working builds supplied by HexOhm.
+- **Android miner source and debug APK:** `firmware/Android_CPU_Miner_v0.4/` — recovered v0.4 Android Studio project including the startup and input-height corrections. See its [build notes](firmware/Android_CPU_Miner_v0.4/README.md). The supplied project labels its version `0.4.0-dev`; the corresponding user-supplied debug APK is provided for testing, but there is no signed production APK.
+- **Raspberry Pi working source:** the supplied four boot files, unchanged from the project owner's `CRSminer_Pi_usbAsic.zip`, with the setup instructions documented [here](firmware/Raspberry_Pi_USB_ASIC/README.md). No precompiled cgminer is bundled.
+- The ESP32/CYD source files and firmware binaries have been retained byte for byte from the working builds supplied by HexOhm. The Android miner source includes only the previously requested input-field sizing correction on top of its archived startup-fixed source.
 - Checksums are available in [`SHA256SUMS.txt`](SHA256SUMS.txt).
 - License: [MIT](LICENSE) for the included HexOhm code, with [third-party attributions](CREDITS.md); externally obtained **cgminer is GPL-3.0** and **not redistributed** in this repository.
 

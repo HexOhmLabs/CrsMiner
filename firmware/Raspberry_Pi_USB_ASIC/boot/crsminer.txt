@@ -1,0 +1,26 @@
+# CRSminer Pi  -  settings file  (by HexOhm, MIT)
+# Edit the values after the "=" sign, save, put the SD card in the Pi.
+# Lines starting with # are ignored. No quotes needed. Changes are read at every boot.
+
+# ---- WiFi ----
+wifi_ssid=MyWiFiName
+wifi_password=MyWiFiPassword
+# two-letter country code of where you are (GR, US, GB, DE ...)
+wifi_country=GR
+
+# ---- Miner ----
+# exactly 4 letters/digits; the Pi will be reachable as crsminer-NAME.local
+name=PI01
+# pool address, host:port   (stratum+tcp:// is added for you)
+pool=public-pool.io:21496
+# your wallet address (must match the coin of the pool)
+wallet=PUT_YOUR_WALLET_ADDRESS_HERE
+worker=erupter
+# pool password, almost always x
+pool_password=x
+
+# ---- Optional ----
+# status page language: en or el
+lang=en
+# extra options passed to the miner program, normally leave empty
+extra_args=

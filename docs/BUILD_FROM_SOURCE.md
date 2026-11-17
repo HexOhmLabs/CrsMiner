@@ -18,3 +18,21 @@ Additional libraries stated in the source headers:
 The uploaded `flash_args` files explicitly state **DIO, 80 MHz, 4 MB**, and the shipped binaries reflect that build. Some board manager IDE option strings in the archived build metadata list `qio`; to reproduce the supplied *compiled* flashing data, follow the **actual `flash_args`** and included binary headers rather than infer addresses/settings solely from the board selection. The build metadata contains Windows local paths, so it is intentionally not published.
 
 For CYD, the supplied source's current display defaults match the two-USB-port, ST7789-based ESP32-2432S028R variant. Alternate hardware versions require changes and recompilation; the published binary is not universal.
+
+
+## Building the Android CPU miner
+
+The separate [CRSminer for Android v0.4](../firmware/Android_CPU_Miner_v0.4/README.md) is an Android Studio project, not Arduino firmware. It includes native C++ SHA-256d code built through Android NDK/CMake, a Java foreground mining service and a resizable home-screen widget. Follow its own setup instructions for Android SDK 35, Gradle 8.9, an appropriate JDK and wrapper preparation.
+
+This source was recovered from the latest archived v0.4 package with the startup crash fix, together with the previously requested height correction for the input fields. The owner tested the Android miner on real hardware and confirmed pool shares; this exact newly packaged source was not independently recompiled during the documentation update. No APK or signing keys are distributed.
+
+
+## Building the Android monitor/scanner
+
+- **Recommended working source:** [Android Monitor v1.2](../monitoring/Android_Monitor_v1.2/) and its [README](../monitoring/Android_Monitor_v1.2/README.md).
+- **Optional developer source:** [Android Monitor v1.3](../monitoring/Android_Monitor_v1.3/) with discovery of Android CPU miners on port 8080. It has **not** been tested by the project owner.
+- Follow the [v1.2/v1.3 detailed comparison](../monitoring/ANDROID_MONITOR_VERSIONS.md) for known differences.
+
+These are two configurations of the **same Android application ID**. Do not install a development candidate over your working 1.2 build without keeping a backup.
+
+The Android CPU miner itself is a different application; its user-supplied [v0.4.0-dev debug APK](../firmware/Android_CPU_Miner_v0.4/apk/CRSminer_for_Android_v0.4.0-dev_DEBUG.apk) is available for developer evaluation.
