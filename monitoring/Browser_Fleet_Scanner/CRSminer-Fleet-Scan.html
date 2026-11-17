@@ -32,9 +32,11 @@ main{flex:1;min-height:0;overflow-y:auto;padding:10px;display:grid;grid-template
 .in{height:100%;display:grid;gap:6px 14px;grid-template-columns:minmax(150px,1.1fr) minmax(0,2.2fr) minmax(170px,1.3fr);grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"id scope st" "foot foot foot"}
 .card.on{border-left-color:var(--ok)}.card.mid{border-left-color:var(--warn)}.card.off{border-left-color:var(--bad);opacity:.62}.card.alert{box-shadow:0 0 0 1px var(--bad) inset}
 .id{grid-area:id;min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;justify-content:safe center;gap:2px;overflow:hidden}
+.id > .pill{position:relative;top:2px}
 .nm{font-size:16px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sub{color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hr{font-size:clamp(24px,7cqh,40px);font-weight:700;color:var(--acc);line-height:1.05;margin-top:2px}.hr small{font-size:.45em;color:var(--fg);font-weight:500;margin-left:3px}
+.pool-url{font-size:11px;line-height:1.25;color:var(--acc);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.pool-url:empty{display:none}
 .pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--mut);width:max-content}
 .pill.on{color:var(--ok);border-color:#235c46}.pill.mid{color:var(--warn);border-color:#6b5a22}.pill.off{color:var(--bad);border-color:#6b2a2a}
 .scope{grid-area:scope;min-width:0;min-height:0;position:relative}
@@ -42,6 +44,7 @@ main{flex:1;min-height:0;overflow-y:auto;padding:10px;display:grid;grid-template
 .st{grid-area:st;display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;align-content:center;min-width:0}
 .st div{min-width:0}.st small{display:block;color:var(--mut);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
 .st span{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.st [data-f="ip"]{font-size:clamp(10px,1.7cqh,12px);font-weight:500}
 .foot{grid-area:foot;font:12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:15px}
 .foot.bad{color:var(--bad)}
 .ok{color:var(--ok)}.bad{color:var(--bad)}
@@ -51,7 +54,7 @@ main{flex:1;min-height:0;overflow-y:auto;padding:10px;display:grid;grid-template
  .st div:nth-child(n+5){display:none}
 }
 @container (max-width:420px){
- .st div:nth-child(n+4){display:none}.st{grid-template-columns:repeat(3,1fr)}.nm{font-size:14px}.hr{font-size:22px}.foot{font-size:11px}
+ .st div:nth-child(n+5){display:none}.st{grid-template-columns:repeat(4,minmax(0,1fr))}.nm{font-size:14px}.hr{font-size:22px}.foot{font-size:11px}
 }
 @container (max-height:175px){
  .id{flex-flow:row wrap;align-content:center;align-items:center;justify-content:flex-start;gap:0 8px}.nm{flex:0 0 100%}.sub{display:none}
@@ -136,7 +139,7 @@ const EL={"Fleet":"Στόλος","Total hashrate":"Συνολικός ρυθμό
 "help3":"Σάρωση τοπικών διευθύνσεων: θύρα 80 για ESP32 και 8080 για Android CPU miners. Επιλέξτε τις θύρες παρακάτω. Δώστε το πρόθεμα του δικτύου σας (τρεις πρώτοι αριθμοί της IP) και χωρίστε πολλαπλά προθέματα με κόμμα.",
 "found":"βρέθηκαν","miner(s)":"miner(s)","scanning":"σάρωση","other web devices (click to add, could be miners with old firmware):":"άλλες συσκευές web (κλικ για προσθήκη, ίσως miners με παλιό firmware):","Added to the list below - press Save.":"Προστέθηκαν στη λίστα παρακάτω - πατήστε Αποθήκευση.","No miners found. Check the prefix, selected ports and browser access to local HTTP.":"Δεν βρέθηκαν miners. Ελέγξτε το πρόθεμα ή ότι τα miners έχουν firmware 1.4.0 ή νεότερο.","Invalid prefix":"Μη έγκυρο πρόθεμα","stopped":"διακόπηκε",
 "browser blocked":"μπλοκάρισμα browser","online":"σε λειτουργία","gentle power mode":"ήπια λειτουργία ισχύος","update firmware":"ενημερώστε το firmware",
-"err_cors":"Ο browser εμποδίζει την ανάγνωση HTTP (CORS ή άδεια τοπικού δικτύου). Ανοίξτε το HTML τοπικά και ελέγξτε IP/θύρα.","err_timeout":"καμία απάντηση (timeout) - ελέγξτε IP, θύρα και miner","err_unreachable":"αδυναμία σύνδεσης - ελέγξτε IP, δίκτυο και άδειες browser","connecting":"σύνδεση με pool","offline":"εκτός σύνδεσης","Good":"Καλά","Bad":"Κακά","Best":"Καλύτερο","Temp":"Θερμ.","WiFi":"WiFi","Uptime":"Λειτουργία","Pool diff":"Δυσκ. pool","Pool":"Pool","last start":"τελευταία εκκίνηση","no data yet":"δεν υπάρχουν δεδομένα ακόμη","no miners yet":"Δεν έχουν προστεθεί miners","Add your miners with the Miners button.":"Προσθέστε τα miners σας με το κουμπί Miners.","Try the Demo":"Δοκιμάστε το Demo","busy":"απασχολημένο",
+"err_cors":"Ο browser εμποδίζει την ανάγνωση HTTP (CORS ή άδεια τοπικού δικτύου). Ανοίξτε το HTML τοπικά και ελέγξτε IP/θύρα.","err_timeout":"καμία απάντηση (timeout) - ελέγξτε IP, θύρα και miner","err_unreachable":"αδυναμία σύνδεσης - ελέγξτε IP, δίκτυο και άδειες browser","connecting":"σύνδεση με pool","offline":"εκτός σύνδεσης","Good":"Καλά","Bad":"Κακά","Best":"Καλύτερο","Temp":"Θερμ.","IP":"IP","WiFi":"WiFi","Uptime":"Λειτουργία","Pool diff":"Δυσκ. pool","Pool":"Pool","last start":"τελευταία εκκίνηση","no data yet":"δεν υπάρχουν δεδομένα ακόμη","no miners yet":"Δεν έχουν προστεθεί miners","Add your miners with the Miners button.":"Προσθέστε τα miners σας με το κουμπί Miners.","Try the Demo":"Δοκιμάστε το Demo","busy":"απασχολημένο",
 "This page is served over https, so the browser blocks reading http miners. Open the file locally (double-click it) or serve it over http.":"Η σελίδα φορτώθηκε με https και ο browser μπλοκάρει την ανάγνωση των miners (http). Ανοίξτε το αρχείο τοπικά (διπλό κλικ) ή σερβίρετέ το με http.",
 "d":"ημ","h":"ω","m":"λ",
 "SHA self-test failed":"Απέτυχε ο αυτοέλεγχος SHA",
@@ -172,9 +175,24 @@ const state=new Map(); // address -> {s,hist,fail,t,el,...}
 const st=a=>{let o=state.get(a);if(!o){o={s:null,hist:[],fail:0,t:0,la:-1,lr:-1,busy:false,el:null,next:0};state.set(a,o)}return o};
 
 // ---------------------------------------------------------------- cards
-const FIELDS=[['Good','acc'],['Bad','rej'],['Temp','tmp'],['Uptime','up'],['Best','best'],['Pool diff','pd'],['WiFi','rssi'],['Pool','pool']];
+// Display only pool data actually supplied by the status endpoint; never guess a port.
+const poolAddress=s=>{
+ if(!s||typeof s.pool!=='string')return '';
+ let host=s.pool.trim().replace(/^[a-z][a-z0-9+.-]*:\/\//i,'').split('/')[0].split('@').pop().trim().replace(/:$/,'');
+ if(!host)return '';
+ const explicit=s.pool_port??s.poolPort;
+ if(!/:\d+$/.test(host)&&explicit!==undefined&&explicit!==null&&/^\d+$/.test(String(explicit))&&+explicit>0&&+explicit<=65535)host+=':'+explicit;
+ return host;
+};
+// The IP tile shows only the local device address, not the HTTP endpoint's port.
+const localIP=(m,s)=>{
+ const vals=[s&&s.ip, m.a.replace(/:\d+$/,'')];
+ for(const v of vals){if(typeof v!=='string')continue;const parts=v.split('.');if(parts.length===4&&parts.every(n=>/^\d{1,3}$/.test(n)&&+n<=255))return v}
+ return '-';
+};
+const FIELDS=[['Good','acc'],['Bad','rej'],['Temp','tmp'],['IP','ip'],['Uptime','up'],['Best','best'],['Pool diff','pd'],['WiFi','rssi'],['Pool','pool']];
 const mkCard=m=>{const c=document.createElement('div');c.className='card';
-c.innerHTML='<div class="in"><div class="id"><div class="nm"></div><div class="sub"></div><div class="hr"><b></b><small></small></div><span class="pill"></span></div><div class="scope"><canvas></canvas></div><div class="st">'+FIELDS.map(f=>'<div><small data-t="'+f[0]+'">'+f[0]+'</small><span data-f="'+f[1]+'">-</span></div>').join('')+'</div><div class="foot"></div></div>';
+c.innerHTML='<div class="in"><div class="id"><div class="nm"></div><div class="sub"></div><div class="hr"><b></b><small></small></div><div class="pool-url" title=""></div><span class="pill"></span></div><div class="scope"><canvas></canvas></div><div class="st">'+FIELDS.map(f=>'<div><small data-t="'+f[0]+'">'+f[0]+'</small><span data-f="'+f[1]+'">-</span></div>').join('')+'</div><div class="foot"></div></div>';
 c.onclick=()=>{if(!demo)window.open('http://'+m.a+'/','_blank','noopener')};return c};
 const render=()=>{const list=$('#list');
  if(!miners.length){list.innerHTML='<div class="empty"><b>'+t('no miners yet')+'</b><br>'+t('Add your miners with the Miners button.')+'<br><br><button class="pri" onclick="startDemo()">'+t('Try the Demo')+'</button></div>';updTotals();return}
@@ -193,9 +211,10 @@ const drawCard=m=>{const o=st(m.a),c=o.el;if(!c)return;const s=o.s;
  $('.sub',c).textContent=m.a+(s&&s.mode?'  ·  '+s.mode:'');
  const hr=s&&!off?s.hr:0,sp=si(hr).match(/^([\d.]+)(\D*)$/)||['','0',''];
  $('.hr b',c).textContent=off?'-':sp[1];$('.hr small',c).textContent=off?'':sp[2]+'H/s';
+  const poolEl=$('.pool-url',c),poolText=s?poolAddress(s):'';poolEl.textContent=poolText;poolEl.title=poolText;
  const p=$('.pill',c);p.className='pill '+mode;p.textContent=t(cors?'browser blocked':(mode==='on'?'online':mode==='mid'?'connecting':'offline'));
  const F=(k,v)=>{const e=$('[data-f="'+k+'"]',c);if(e)e.textContent=v};
- if(s){F('acc',s.acc);F('rej',s.rej);F('best',si(s.best));F('pd',s.pdiff>=1?si(s.pdiff):(s.pdiff>0?(+s.pdiff).toPrecision(2):'-'));F('tmp',Math.round(s.temp)+'°C');F('rssi',s.rssi+' dBm');F('up',dur(s.up));F('pool',s.pool)}
+ if(s){F('acc',s.acc);F('rej',s.rej);F('best',si(s.best));F('pd',s.pdiff>=1?si(s.pdiff):(s.pdiff>0?(+s.pdiff).toPrecision(2):'-'));F('tmp',Math.round(s.temp)+'°C');F('rssi',s.rssi+' dBm');F('up',dur(s.up));F('pool',s.pool);F('ip',localIP(m,s))}
  const f=$('.foot',c);
  if(off&&!s){f.textContent=o.err?t('err_'+o.err):(o.fail?t('offline'):t('no data yet'));f.className=cors?'foot bad':'foot'}
  else if(off){f.textContent=t('offline')+' · '+dur((Date.now()-o.t)/1000);f.className='foot bad'}
