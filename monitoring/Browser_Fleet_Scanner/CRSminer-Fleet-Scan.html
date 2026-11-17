@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f1115">
+<title>CRSminer Fleet (scan)</title>
+<link rel="icon" href="data:image/png;base64,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">
+<!-- Scan edition: adds a network scan button. CRSminer Fleet monitor - Copyright (c) 2026 HexOhm - MIT License (same as CRSminer).
+     One self-contained file: open it in any modern browser (Windows, Android, macOS, Linux).
+     It reads http://<miner>/api/status from each miner on your own network; nothing is sent anywhere else. -->
+<style>
+:root{--bg:#0f1115;--card:#181b22;--fg:#e8eaf0;--mut:#8b92a5;--acc:#f7931a;--ok:#3ecf8e;--bad:#ff5c5c;--warn:#ffd166;--line:#2b303b}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:8px 12px;border-bottom:1px solid var(--line);background:#12151b}
+h1{font-size:17px;margin:0;display:flex;align-items:center;gap:8px}h1 b{color:var(--acc)}h1 .lg{height:34px;width:auto}
+.tot{display:flex;gap:16px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+.tot div{line-height:1.15}.tot small{display:block;white-space:nowrap;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.tot span{white-space:nowrap;font-size:17px;font-weight:650}.tot .thr span{color:var(--acc);font-size:20px}
+.grp{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;color:var(--mut);font-size:13px}.ctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+select,button,textarea,input{font:inherit;color:var(--fg);background:#10131a;border:1px solid var(--line);border-radius:8px;padding:6px 9px}
+button{cursor:pointer}button.pri{background:var(--acc);color:#111;border:0;font-weight:600}
+button:hover{filter:brightness(1.15)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;border-radius:0;background:#10131a}.seg button.on{background:var(--acc);color:#111;font-weight:700}
+#warn{display:none;background:#3a2a10;color:var(--warn);padding:6px 12px;font-size:13px}
+main{flex:1;min-height:0;overflow-y:auto;padding:10px;display:grid;grid-template-columns:repeat(var(--cols,1),minmax(0,1fr));gap:10px;align-content:start;scroll-snap-type:y proximity}
+.empty{grid-column:1/-1;margin:auto;text-align:center;color:var(--mut);max-width:420px;line-height:1.5}
+.card{flex:0 0 auto;scroll-snap-align:start;container-type:size;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--mut);border-radius:12px;padding:10px 12px;cursor:pointer;position:relative;overflow:hidden}
+.in{height:100%;display:grid;gap:6px 14px;grid-template-columns:minmax(150px,1.1fr) minmax(0,2.2fr) minmax(170px,1.3fr);grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"id scope st" "foot foot foot"}
+.card.on{border-left-color:var(--ok)}.card.mid{border-left-color:var(--warn)}.card.off{border-left-color:var(--bad);opacity:.62}.card.alert{box-shadow:0 0 0 1px var(--bad) inset}
+.id{grid-area:id;min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;justify-content:safe center;gap:2px;overflow:hidden}
+.nm{font-size:16px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sub{color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hr{font-size:clamp(24px,7cqh,40px);font-weight:700;color:var(--acc);line-height:1.05;margin-top:2px}.hr small{font-size:.45em;color:var(--fg);font-weight:500;margin-left:3px}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--mut);width:max-content}
+.pill.on{color:var(--ok);border-color:#235c46}.pill.mid{color:var(--warn);border-color:#6b5a22}.pill.off{color:var(--bad);border-color:#6b2a2a}
+.scope{grid-area:scope;min-width:0;min-height:0;position:relative}
+.scope canvas{position:absolute;inset:0;width:100%;height:100%;background:#050a0c;border:1px solid #1d2a2a;border-radius:8px}
+.st{grid-area:st;display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;align-content:center;min-width:0}
+.st div{min-width:0}.st small{display:block;color:var(--mut);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+.st span{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.foot{grid-area:foot;font:12px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:15px}
+.foot.bad{color:var(--bad)}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+@container (max-width:720px){
+ .in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto;grid-template-areas:"id scope" "st st" "foot foot"}
+ .st{grid-template-columns:repeat(4,1fr)}
+ .st div:nth-child(n+5){display:none}
+}
+@container (max-width:420px){
+ .st div:nth-child(n+4){display:none}.st{grid-template-columns:repeat(3,1fr)}.nm{font-size:14px}.hr{font-size:22px}.foot{font-size:11px}
+}
+@container (max-height:175px){
+ .id{flex-flow:row wrap;align-content:center;align-items:center;justify-content:flex-start;gap:0 8px}.nm{flex:0 0 100%}.sub{display:none}
+
+ .st{grid-template-columns:repeat(4,1fr);gap:2px 10px}.st small{font-size:9px;letter-spacing:0}.st span{font-size:12px}.sub{font-size:11px}.nm{font-size:15px}.hr{font-size:26px}.pill{font-size:10px}
+}
+@container (max-width:720px) and (max-height:200px){
+ .st small{font-size:9px}.st span{font-size:12px}.sub{display:none}
+}
+@media(max-height:700px) and (min-width:641px){header{padding:4px 10px;gap:4px 14px}h1 .lg{height:28px}.tot{gap:4px 14px;flex-wrap:nowrap}.tot small{font-size:9.5px}.tot span{font-size:15px}.ctl{gap:4px}select,button{padding:4px 8px}}
+@media(max-width:640px){
+ header{padding:6px 10px;gap:6px 10px}h1{font-size:15px}
+ .tot{display:grid;grid-template-columns:repeat(4,auto);gap:4px 12px;flex:none;width:100%}.tot span{font-size:14px}.tot .thr span{font-size:15px}.tot small{font-size:9.5px}
+ .ctl{width:100%}
+ main{padding:8px}
+}
+dialog{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:14px;padding:16px;width:min(560px,94vw)}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+#scanbox{border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}#scanbox h3{margin:0 0 4px;font-size:14px}
+#sc_bar{height:5px;background:#10131a;border-radius:3px;margin-top:10px;overflow:hidden;display:none}#sc_bar i{display:block;height:100%;width:0;background:var(--acc)}
+#sc_msg{font-size:12.5px;color:var(--mut);margin-top:6px;min-height:16px}#sc_res{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid #235c46;color:var(--ok);background:#10131a}.chip.o{border-color:var(--line);color:var(--mut);cursor:pointer}
+dialog h2{margin:0 0 8px;font-size:16px}dialog p{color:var(--mut);font-size:12.5px;margin:6px 0;line-height:1.45}
+textarea{width:100%;height:200px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.row .sp{flex:1}
+</style>
+</head>
+<body>
+<header>
+  <h1><img class="lg" src="data:image/png;base64,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" alt="HexOhm"><span><b>CRS</b>miner <span data-t="Fleet">Fleet</span></span></h1>
+  <div class="tot">
+    <div class="thr"><small data-t="Total hashrate">Total hashrate</small><span id="t_hr">-</span></div>
+    <div><small data-t="Online">Online</small><span id="t_on">-</span></div>
+    <div><small data-t="Shares ok / rejected">Shares ok / rejected</small><span id="t_sh">-</span></div>
+    <div><small data-t="Warnings">Warnings</small><span id="t_w">-</span></div>
+  </div>
+  <div class="ctl">
+    <span class="grp"><span data-t="Rows on screen">Rows on screen</span>
+    <span class="seg" id="seg"><button data-n="2">2</button><button data-n="3">3</button><button data-n="4">4</button></span></span>
+    <span class="grp"><span data-t="Per row">Per row</span>
+    <span class="seg" id="seg2"><button data-c="1">1</button><button data-c="2">2</button><button data-c="3">3</button><button data-c="4">4</button></span></span>
+    <select id="ref" title="Refresh"><option value="3">3 s</option><option value="5">5 s</option><option value="10">10 s</option></select>
+    <select id="lng"><option value="0">English</option><option value="1">Ελληνικά</option></select>
+    <button id="scanbtn" data-t="Scan network">Scan network</button>
+    <button class="pri" id="edit" data-t="Miners">Miners</button>
+  </div>
+</header>
+<div id="warn"></div>
+<main id="list"></main>
+
+<dialog id="dlg">
+  <h2 data-t="Miners">Miners</h2>
+  <p data-t="help1">One miner per line: its IP address or name, then an optional label. Example:</p>
+  <p><code>192.168.1.50 Garage<br>crsminer-rig1.local Office</code></p>
+  <p data-t="help2">IP addresses are the most reliable (phones often cannot resolve .local names). Give each miner a fixed IP in your router.</p>
+  <div id="scanbox">
+    <h3 data-t="Find miners on my network">Find miners on my network</h3>
+    <p data-t="help3">A browser cannot see .local names on its own, so the scan asks each address in the range once, on port 80. Enter your network prefix (the first three numbers of your router address). Several prefixes can be separated by commas.</p>
+    <div class="row" style="margin-top:4px">
+      <input id="sc_pre" style="flex:1;min-width:140px" placeholder="192.168.1" spellcheck="false">
+      <input id="sc_from" type="number" min="1" max="254" value="1" style="width:70px"><span>–</span>
+      <input id="sc_to" type="number" min="1" max="254" value="254" style="width:70px">
+      <button class="pri" id="sc_go" data-t="Scan">Scan</button><button id="sc_stop" data-t="Stop" style="display:none">Stop</button>
+    </div>
+    <div id="sc_bar"><i></i></div><div id="sc_msg"></div><div id="sc_res"></div>
+  </div>
+  <textarea id="txt" spellcheck="false"></textarea>
+  <div class="row">
+    <button class="pri" id="save" data-t="Save">Save</button>
+    <button id="demo" data-t="Demo">Demo</button>
+    <button id="link" data-t="Copy link">Copy link</button>
+    <span class="sp"></span>
+    <button id="close" data-t="Close">Close</button>
+  </div>
+</dialog>
+
+<script>
+const EL={"Fleet":"Στόλος","Total hashrate":"Συνολικός ρυθμός hash","Online":"Συνδεδεμένα","Shares ok / rejected":"Shares αποδεκτά / απορριφθέντα","Warnings":"Προειδοποιήσεις","Per screen":"Ανά οθόνη","Miners":"Miners","Save":"Αποθήκευση","Demo":"Δοκιμή","Copy link":"Αντιγραφή συνδέσμου","Close":"Κλείσιμο",
+"help1":"Ένα miner ανά γραμμή: η διεύθυνση IP ή το όνομά του και προαιρετικά μια ετικέτα. Παράδειγμα:","help2":"Οι διευθύνσεις IP είναι πιο αξιόπιστες (τα κινητά συχνά δεν αναγνωρίζουν ονόματα .local). Δώστε σε κάθε miner σταθερή IP από το router.",
+"Scan network":"Σάρωση δικτύου","Rows on screen":"Σειρές στην οθόνη","Per row":"Ανά σειρά","Find miners on my network":"Εύρεση miners στο δίκτυό μου","Scan":"Σάρωση","Stop":"Διακοπή",
+"help3":"Ο browser δεν βλέπει ονόματα .local μόνος του, γι' αυτό η σάρωση ρωτά μία φορά κάθε διεύθυνση του εύρους, στη θύρα 80. Δώστε το πρόθεμα του δικτύου σας (οι τρεις πρώτοι αριθμοί της διεύθυνσης του router). Μπορείτε να βάλετε πολλά, χωρισμένα με κόμμα.",
+"found":"βρέθηκαν","miner(s)":"miner(s)","scanning":"σάρωση","other web devices (click to add, could be miners with old firmware):":"άλλες συσκευές web (κλικ για προσθήκη, ίσως miners με παλιό firmware):","Added to the list below - press Save.":"Προστέθηκαν στη λίστα παρακάτω - πατήστε Αποθήκευση.","No miners found. Check the prefix, or that the miners run firmware 1.4.0 or newer.":"Δεν βρέθηκαν miners. Ελέγξτε το πρόθεμα ή ότι τα miners έχουν firmware 1.4.0 ή νεότερο.","Invalid prefix":"Μη έγκυρο πρόθεμα","stopped":"διακόπηκε",
+"online":"σε λειτουργία","gentle power mode":"ήπια λειτουργία ισχύος","update firmware":"ενημερώστε το firmware",
+"err_cors":"Το miner απαντά αλλά ο browser μπλοκάρει την ανάγνωση: φορτώστε CRSminer 1.4.0 ή νεότερο","err_timeout":"καμία απάντηση (timeout) - λάθος IP ή miner εκτός δικτύου","err_unreachable":"αδυναμία σύνδεσης - λάθος διεύθυνση ή μπλοκάρισμα δικτύου","connecting":"σύνδεση με pool","offline":"εκτός σύνδεσης","Good":"Καλά","Bad":"Κακά","Best":"Καλύτερο","Temp":"Θερμ.","WiFi":"WiFi","Uptime":"Λειτουργία","Pool diff":"Δυσκ. pool","Pool":"Pool","last start":"τελευταία εκκίνηση","no data yet":"δεν υπάρχουν δεδομένα ακόμη","no miners yet":"Δεν έχουν προστεθεί miners","Add your miners with the Miners button.":"Προσθέστε τα miners σας με το κουμπί Miners.","Try the Demo":"Δοκιμάστε το Demo","busy":"απασχολημένο",
+"This page is served over https, so the browser blocks reading http miners. Open the file locally (double-click it) or serve it over http.":"Η σελίδα φορτώθηκε με https και ο browser μπλοκάρει την ανάγνωση των miners (http). Ανοίξτε το αρχείο τοπικά (διπλό κλικ) ή σερβίρετέ το με http.",
+"d":"ημ","h":"ω","m":"λ",
+"SHA self-test failed":"Απέτυχε ο αυτοέλεγχος SHA",
+"WiFi / internet not connected":"Δεν υπάρχει σύνδεση WiFi / internet",
+"pool refused the login (check wallet address)":"Το pool απέρριψε τη σύνδεση (ελέγξτε τη διεύθυνση πορτοφολιού)",
+"pool unreachable":"Το pool δεν είναι προσβάσιμο",
+"no hashing":"Δεν γίνεται hashing",
+"most shares are rejected":"Τα περισσότερα shares απορρίπτονται",
+"no accepted shares for a long time":"Δεν υπάρχουν αποδεκτά shares εδώ και ώρα",
+"power on":"ενεργοποίηση ρεύματος",
+"BROWNOUT (power supply too weak)":"BROWNOUT (ανεπαρκής τροφοδοσία)",
+"crash (panic)":"κατάρρευση (panic)",
+"watchdog reset":"επαναφορά watchdog",
+"reset button":"κουμπί reset",
+"software restart":"επανεκκίνηση λογισμικού"};
+const $=(q,e=document)=>e.querySelector(q);
+const LS=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:v}catch(e){return d}};
+const LSset=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+let lang=+LS('crsfl_lang',navigator.language&&navigator.language.startsWith('el')?1:0)||0,per=[2,3,4].includes(+LS('crsfl_per',3))?+LS('crsfl_per',3):3,cols=[1,2,3,4].includes(+LS('crsfl_cols',1))?+LS('crsfl_cols',1):1,every=+LS('crsfl_ref',3)||3,demo=false;
+const EN={err_cors:'The miner answers, but the browser blocks reading it: flash CRSminer 1.4.0 or newer on this miner',err_timeout:'no answer (timeout) - wrong IP or miner offline',err_unreachable:'cannot connect - wrong address or blocked network'};
+const t=s=>(lang&&EL[s]!==undefined)?EL[s]:(EN[s]!==undefined?EN[s]:s);
+const si=n=>{const u=['','K','M','G','T','P'];let i=0;while(n>=1000&&i<5){n/=1000;i++}return n.toFixed(n<10?2:1)+u[i]};
+const dur=s=>{const d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return(d?d+t('d')+' ':'')+h+t('h')+' '+m+t('m')};
+const MAXH=100,COL=['#4fc3f7','#d77bff','#7ee081','#ffd166'];
+
+// ---------------------------------------------------------------- miner list
+const parseList=txt=>txt.split(/\r?\n/).map(l=>l.trim()).filter(Boolean).map(l=>{const p=l.split(/\s+/);let a=p[0].replace(/^https?:\/\//i,'').replace(/\/.*$/,'');return{a,n:p.slice(1).join(' ')}}).filter(m=>m.a);
+const fmtList=l=>l.map(m=>m.a+(m.n?' '+m.n:'')).join('\n');
+let miners=[];
+try{const q=new URLSearchParams(location.search).get('m');if(q)miners=parseList(q.split(',').join('\n').replace(/;/g,'\n'))}catch(e){}
+if(!miners.length)miners=parseList(LS('crsfl_list',''));
+const state=new Map(); // address -> {s,hist,fail,t,el,...}
+const st=a=>{let o=state.get(a);if(!o){o={s:null,hist:[],fail:0,t:0,la:-1,lr:-1,busy:false,el:null,next:0};state.set(a,o)}return o};
+
+// ---------------------------------------------------------------- cards
+const FIELDS=[['Good','acc'],['Bad','rej'],['Temp','tmp'],['Uptime','up'],['Best','best'],['Pool diff','pd'],['WiFi','rssi'],['Pool','pool']];
+const mkCard=m=>{const c=document.createElement('div');c.className='card';
+c.innerHTML='<div class="in"><div class="id"><div class="nm"></div><div class="sub"></div><div class="hr"><b></b><small></small></div><span class="pill"></span></div><div class="scope"><canvas></canvas></div><div class="st">'+FIELDS.map(f=>'<div><small data-t="'+f[0]+'">'+f[0]+'</small><span data-f="'+f[1]+'">-</span></div>').join('')+'</div><div class="foot"></div></div>';
+c.onclick=()=>{if(!demo)window.open('http://'+m.a+'/','_blank','noopener')};return c};
+const render=()=>{const list=$('#list');
+ if(!miners.length){list.innerHTML='<div class="empty"><b>'+t('no miners yet')+'</b><br>'+t('Add your miners with the Miners button.')+'<br><br><button class="pri" onclick="startDemo()">'+t('Try the Demo')+'</button></div>';updTotals();return}
+ const keep=new Set(miners.map(m=>m.a));
+ if(list.querySelector('.empty'))list.innerHTML='';
+ [...list.children].forEach(c=>{if(!keep.has(c.dataset.a))c.remove()});
+ miners.forEach((m,i)=>{const o=st(m.a);if(!o.el||!o.el.isConnected){o.el=mkCard(m);o.el.dataset.a=m.a}
+  if(list.children[i]!==o.el)list.insertBefore(o.el,list.children[i]||null)});
+ sizeCards();miners.forEach(drawCard);updTotals()};
+const sizeCards=()=>{const l=$('#list'),h=(l.clientHeight-20-(per-1)*10)/per,eff=Math.max(1,Math.min(cols,Math.floor((l.clientWidth-20+10)/230)));l.style.setProperty('--cols',eff);l.style.gridAutoRows=Math.max(150,h)+'px'};
+const drawCard=m=>{const o=st(m.a),c=o.el;if(!c)return;const s=o.s;
+ const age=Date.now()-o.t,off=!s||o.fail>=2||age>4*every*1000+4000;
+ const cors=!s&&o.err==='cors',mode=cors?'mid':(off?'off':(s.ok?'on':'mid'));
+ c.className='card '+mode+((!off&&s.diag)?' alert':'');
+ $('.nm',c).textContent=m.n||(s?s.host.replace('.local','').replace('crsminer-','CRSminer '):m.a);
+ $('.sub',c).textContent=m.a+(s&&s.mode?'  ·  '+s.mode:'');
+ const hr=s&&!off?s.hr:0,sp=si(hr).match(/^([\d.]+)(\D*)$/)||['','0',''];
+ $('.hr b',c).textContent=off?'-':sp[1];$('.hr small',c).textContent=off?'':sp[2]+'H/s';
+ const p=$('.pill',c);p.className='pill '+mode;p.textContent=t(cors?'update firmware':(mode==='on'?'online':mode==='mid'?'connecting':'offline'));
+ const F=(k,v)=>{const e=$('[data-f="'+k+'"]',c);if(e)e.textContent=v};
+ if(s){F('acc',s.acc);F('rej',s.rej);F('best',si(s.best));F('pd',s.pdiff>=1?si(s.pdiff):(s.pdiff>0?(+s.pdiff).toPrecision(2):'-'));F('tmp',Math.round(s.temp)+'°C');F('rssi',s.rssi+' dBm');F('up',dur(s.up));F('pool',s.pool)}
+ const f=$('.foot',c);
+ if(off&&!s){f.textContent=o.err?t('err_'+o.err):(o.fail?t('offline'):t('no data yet'));f.className=cors?'foot bad':'foot'}
+ else if(off){f.textContent=t('offline')+' · '+dur((Date.now()-o.t)/1000);f.className='foot bad'}
+ else if(s.diag||s.err){f.textContent='⚠ '+t(s.diag||s.err);f.className=s.diag?'foot bad':'foot'}
+ else{f.textContent=(s.rst?t('last start')+': '+t(String(s.rst).replace(/ \(self-heal.*$/,''))+(/self-heal/.test(s.rst)?' '+String(s.rst).replace(/^.*(\(self-heal.*)$/,'$1'):'')+(s.gen?' · '+t('gentle power mode')+' '+s.gen:''):'')+'';f.className='foot'}
+ scope(o,c)};
+const scope=(o,c)=>{const cv=$('canvas',c);if(!cv)return;const dpr=window.devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;if(!W||!H)return;
+ if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
+ const g=cv.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,W,H);
+ g.strokeStyle='rgba(110,255,200,.09)';g.lineWidth=1;g.beginPath();for(let k=1;k<10;k++){const x=Math.round(W*k/10)+.5;g.moveTo(x,0);g.lineTo(x,H)}for(let k=1;k<4;k++){const y=Math.round(H*k/4)+.5;g.moveTo(0,y);g.lineTo(W,y)}g.stroke();
+ const h=o.hist,n=h.length;if(n<2)return;let hi=1;h.forEach(p=>{hi=Math.max(hi,p.hr,...p.c)});hi*=1.1;
+ const dx=W/(Math.max(n,40)-1),X=i=>W-(n-1-i)*dx,Y=v=>H-4-Math.min(v,hi)/hi*(H-10);
+ h.forEach((p,i)=>{if(p.da||p.dr){g.strokeStyle=p.dr?'rgba(255,92,92,.5)':'rgba(62,207,142,.4)';g.setLineDash([2,3]);g.beginPath();g.moveTo(X(i)+.5,0);g.lineTo(X(i)+.5,H);g.stroke();g.setLineDash([])}});
+ const tr=f=>{g.beginPath();h.forEach((p,i)=>{i?g.lineTo(X(i),Y(f(p))):g.moveTo(X(i),Y(f(p)))})};
+ const nc=h[n-1].c.length;if(nc>1)for(let k=0;k<nc;k++){tr(p=>p.c[k]||0);g.lineWidth=1;g.strokeStyle=COL[k];g.globalAlpha=.75;g.stroke();g.globalAlpha=1}
+ tr(p=>p.hr);g.lineTo(X(n-1),H);g.lineTo(X(0),H);g.closePath();const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,'rgba(247,147,26,.3)');gr.addColorStop(1,'rgba(247,147,26,0)');g.fillStyle=gr;g.fill();
+ g.lineJoin='round';tr(p=>p.hr);g.shadowColor='#f7931a';g.shadowBlur=8;g.lineWidth=1.8;g.strokeStyle='#ffb347';g.stroke();g.shadowBlur=0;
+ g.fillStyle='#8b92a5';g.font='10px system-ui';g.textAlign='left';g.textBaseline='top';g.fillText(si(hi/1.1)+'H/s',4,3)};
+const updTotals=()=>{let hr=0,on=0,acc=0,rej=0,w=0;miners.forEach(m=>{const o=st(m.a),s=o.s;if(!s)return;const off=o.fail>=2||Date.now()-o.t>4*every*1000+4000;if(!off){on++;hr+=s.hr;if(s.diag||s.err)w++}acc+=s.acc;rej+=s.rej});
+ $('#t_hr').textContent=si(hr)+'H/s';$('#t_on').textContent=on+' / '+miners.length;$('#t_sh').textContent=acc+' / '+rej;const e=$('#t_w');e.textContent=w;e.className=w?'bad':'ok'};
+
+// ---------------------------------------------------------------- polling
+const addSample=(o,s)=>{const a=s.acc||0,r=s.rej||0;o.hist.push({hr:s.hr||0,c:(s.cores||[]).slice(0,4),da:(o.la>=0&&a>o.la)?1:0,dr:(o.lr>=0&&r>o.lr)?1:0});o.la=a;o.lr=r;if(o.hist.length>MAXH)o.hist.shift()};
+const poll=async m=>{const o=st(m.a);if(o.busy)return;o.busy=true;const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),4000);
+ try{const r=await fetch('http://'+m.a+'/api/status',{signal:ctl.signal,cache:'no-store'});
+  if(r.status===429){o.busy=false;clearTimeout(to);return}
+  const s=await r.json();o.s=s;o.fail=0;o.err='';o.t=Date.now();addSample(o,s)}
+ catch(e){o.fail++;
+  if(e&&e.name==='AbortError')o.err='timeout';
+  else{try{const c2=new AbortController(),t2=setTimeout(()=>c2.abort(),3000);await fetch('http://'+m.a+'/api/status',{mode:'no-cors',signal:c2.signal,cache:'no-store'});clearTimeout(t2);o.err='cors'}catch(e2){o.err='unreachable'}}}
+ clearTimeout(to);o.busy=false;drawCard(m);updTotals()};
+let timer=null;
+const startPolling=()=>{clearInterval(timer);if(demo)return;miners.forEach((m,i)=>setTimeout(()=>poll(m),i*200));
+ timer=setInterval(()=>miners.forEach((m,i)=>setTimeout(()=>poll(m),i*200)),every*1000)};
+
+// ---------------------------------------------------------------- demo
+let demoT=null;
+const startDemo=()=>{demo=true;clearInterval(timer);state.clear();$('#list').innerHTML='';
+ miners=[{a:'192.168.1.50',n:'Garage'},{a:'192.168.1.51',n:'Office'},{a:'192.168.1.52',n:'Kitchen'},{a:'192.168.1.53',n:'Attic'},{a:'192.168.1.54',n:'Shed'},{a:'192.168.1.55',n:'Balcony'}];
+ const seed=miners.map((m,i)=>({base:i==3?32000:(i%2?10000:1.0e6),acc:5+i*3,rej:i==1?2:0,up:3600*(5+i*7)}));
+ const tick=()=>{miners.forEach((m,i)=>{const o=st(m.a),d=seed[i];const j=1+Math.sin(Date.now()/9000+i)*.06+(Math.random()-.5)*.05;let hr=d.base*j;if(i==5){o.fail=3;return}
+  const hw=d.base>9e5;const s={hr,cores:hw?[hr*.03,hr*.97]:[hr/2,hr/2],acc:d.acc,rej:d.rej,best:4.1+i*3.7,pdiff:i==3?0.0002:0.002,up:d.up+=2,ok:i!=2,pool:'stratum.example.pool',rssi:-55-i*4,temp:41+i,host:'crsminer-rig'+i+'.local',mode:hw?'hardware SHA (fast)':'software (CPU)',diag:i==1?'most shares are rejected':'',err:'',rst:i==3?'BROWNOUT (power supply too weak)':'power on'};
+  if(Math.random()<.02)d.acc++;o.s=s;o.fail=0;o.t=Date.now();addSample(o,s);drawCard(m)});updTotals()};
+ render();for(let k=0;k<60;k++)tick();clearInterval(demoT);demoT=setInterval(tick,2000);$('#dlg').close()};
+
+// ---------------------------------------------------------------- network scan
+let scanning=false;
+const probe=async ip=>{const c=new AbortController(),to=setTimeout(()=>c.abort(),1500);
+ try{const r=await fetch('http://'+ip+'/api/status',{signal:c.signal,cache:'no-store'});const j=await r.json();clearTimeout(to);
+  return(j&&typeof j.hr==='number'&&/^crsminer-/i.test(j.host||''))?{t:'m',ip,s:j}:{t:'x'}}
+ catch(e){clearTimeout(to);if(e&&e.name==='AbortError')return{t:'x'};
+  try{const c2=new AbortController(),t2=setTimeout(()=>c2.abort(),1500);await fetch('http://'+ip+'/api/status',{mode:'no-cors',signal:c2.signal,cache:'no-store'});clearTimeout(t2);return{t:'w',ip}}catch(e2){return{t:'x'}}}};
+const guessPrefix=()=>{const set=new Set();miners.forEach(m=>{const k=m.a.match(/^(\d+\.\d+\.\d+)\.\d+/);if(k)set.add(k[1])});const h=location.hostname.match(/^(\d+\.\d+\.\d+)\.\d+$/);if(h)set.add(h[1]);return set.size?[...set].join(', '):'192.168.1'};
+const addToText=(ip,label)=>{const cur=parseList($('#txt').value);if(cur.some(m=>m.a===ip))return;cur.push({a:ip,n:label||''});$('#txt').value=fmtList(cur)};
+const runScan=async()=>{if(scanning)return;
+ const pre=$('#sc_pre').value.split(/[\s,;]+/).filter(Boolean),from=Math.max(1,+$('#sc_from').value||1),to=Math.min(254,+$('#sc_to').value||254);
+ if(!pre.length||pre.some(p=>!/^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(p))){$('#sc_msg').textContent=t('Invalid prefix');return}
+ const jobs=[];pre.forEach(p=>{for(let i=from;i<=to;i++)jobs.push(p+'.'+i)});
+ scanning=true;$('#sc_go').style.display='none';$('#sc_stop').style.display='';$('#sc_bar').style.display='block';$('#sc_res').innerHTML='';
+ const found=[],other=[];let k=0,done=0;
+ const bar=$('#sc_bar i'),msg=$('#sc_msg');
+ const worker=async()=>{while(scanning&&k<jobs.length){const ip=jobs[k++];const r=await probe(ip);
+   if(r.t==='m'){found.push(r);const ch=document.createElement('span');ch.className='chip';ch.textContent=r.s.host.replace('.local','')+'  '+ip;$('#sc_res').appendChild(ch);addToText(ip,'')}
+   else if(r.t==='w')other.push(ip);
+   done++;bar.style.width=(100*done/jobs.length)+'%';msg.textContent=t('scanning')+' '+done+' / '+jobs.length+' · '+t('found')+' '+found.length+' '+t('miner(s)')}};
+ await Promise.all(Array.from({length:8},worker));
+ const stopped=!scanning;scanning=false;$('#sc_go').style.display='';$('#sc_stop').style.display='none';
+ msg.textContent=(stopped&&done<jobs.length?t('stopped')+' · ':'')+t('found')+' '+found.length+' '+t('miner(s)')+'. '+(found.length?t('Added to the list below - press Save.'):t('No miners found. Check the prefix, or that the miners run firmware 1.4.0 or newer.'));
+ if(other.length){const h=document.createElement('div');h.style.cssText='width:100%;font-size:12px;color:var(--mut)';h.textContent=t('other web devices (click to add, could be miners with old firmware):');$('#sc_res').appendChild(h);
+  other.forEach(ip=>{const ch=document.createElement('span');ch.className='chip o';ch.textContent=ip;ch.onclick=()=>{addToText(ip,'');ch.style.opacity=.4};$('#sc_res').appendChild(ch)})}};
+$('#sc_go').onclick=runScan;$('#sc_stop').onclick=()=>{scanning=false};
+$('#scanbtn').onclick=()=>{$('#txt').value=fmtList(demo?[]:miners);$('#sc_pre').value=guessPrefix();$('#dlg').showModal();runScan()};
+
+// ---------------------------------------------------------------- ui
+const applyLang=()=>{document.documentElement.lang=lang?'el':'en';document.querySelectorAll('[data-t]').forEach(e=>{if(e.dataset.en===undefined)e.dataset.en=e.textContent;e.textContent=t(e.dataset.en)});miners.forEach(drawCard);updTotals();if(!miners.length)render()};
+const setCols=n=>{cols=n;LSset('crsfl_cols',n);document.querySelectorAll('#seg2 button').forEach(b=>b.classList.toggle('on',+b.dataset.c===n));sizeCards();setTimeout(()=>miners.forEach(drawCard),30)};
+const setPer=n=>{per=n;LSset('crsfl_per',n);document.querySelectorAll('#seg button').forEach(b=>b.classList.toggle('on',+b.dataset.n===n));sizeCards();miners.forEach(drawCard)};
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>setPer(+b.dataset.n));
+document.querySelectorAll('#seg2 button').forEach(b=>b.onclick=()=>setCols(+b.dataset.c));
+$('#lng').value=String(lang);$('#lng').onchange=()=>{lang=+$('#lng').value;LSset('crsfl_lang',lang);applyLang()};
+$('#ref').value=String(every);$('#ref').onchange=()=>{every=+$('#ref').value;LSset('crsfl_ref',every);startPolling()};
+$('#edit').onclick=()=>{$('#txt').value=fmtList(demo?[]:miners);$('#sc_pre').value=guessPrefix();$('#dlg').showModal()};
+$('#close').onclick=()=>{scanning=false;$('#dlg').close()};
+$('#save').onclick=()=>{clearInterval(demoT);demo=false;miners=parseList($('#txt').value);LSset('crsfl_list',fmtList(miners));state.clear();$('#list').innerHTML='';render();startPolling();$('#dlg').close()};
+$('#demo').onclick=startDemo;
+$('#link').onclick=async()=>{const u=location.href.split('?')[0]+'?m='+encodeURIComponent(miners.map(m=>m.a+(m.n?' '+m.n:'')).join(';'));try{await navigator.clipboard.writeText(u)}catch(e){prompt('Link',u)}};
+window.addEventListener('resize',()=>{sizeCards();miners.forEach(drawCard)});
+if(location.protocol==='https:'){const w=$('#warn');w.style.display='block';w.textContent=t('This page is served over https, so the browser blocks reading http miners. Open the file locally (double-click it) or serve it over http.')}
+if(new URLSearchParams(location.search).has('demo'))startDemo();else{render();startPolling()}
+setPer(per);setCols(cols);applyLang();
+</script>
+</body>
+</html>
