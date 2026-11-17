@@ -105,15 +105,16 @@ textarea{width:100%;height:200px;font-family:ui-monospace,Menlo,Consolas,monospa
 <dialog id="dlg">
   <h2 data-t="Miners">Miners</h2>
   <p data-t="help1">One miner per line: its IP address or name, then an optional label. Example:</p>
-  <p><code>192.168.1.50 Garage<br>crsminer-rig1.local Office</code></p>
+  <p><code>192.168.1.50 Garage<br>192.168.1.51:8080 Android Phone<br>crsminer-rig1.local Office</code></p>
   <p data-t="help2">IP addresses are the most reliable (phones often cannot resolve .local names). Give each miner a fixed IP in your router.</p>
   <div id="scanbox">
     <h3 data-t="Find miners on my network">Find miners on my network</h3>
-    <p data-t="help3">A browser cannot see .local names on its own, so the scan asks each address in the range once, on port 80. Enter your network prefix (the first three numbers of your router address). Several prefixes can be separated by commas.</p>
+    <p data-t="help3">Scan local IP addresses for ESP32 miners on port 80 and Android CPU miners on port 8080. Select a port mode below. Enter your network prefix (first three IP numbers); separate multiple prefixes with commas.</p>
     <div class="row" style="margin-top:4px">
       <input id="sc_pre" style="flex:1;min-width:140px" placeholder="192.168.1" spellcheck="false">
       <input id="sc_from" type="number" min="1" max="254" value="1" style="width:70px"><span>–</span>
       <input id="sc_to" type="number" min="1" max="254" value="254" style="width:70px">
+      <select id="sc_ports" aria-label="Scan ports"><option value="both" data-t="ESP32 + Android (80 + 8080)">ESP32 + Android (80 + 8080)</option><option value="esp" data-t="ESP32 only (80)">ESP32 only (80)</option><option value="android" data-t="Android only (8080)">Android only (8080)</option></select>
       <button class="pri" id="sc_go" data-t="Scan">Scan</button><button id="sc_stop" data-t="Stop" style="display:none">Stop</button>
     </div>
     <div id="sc_bar"><i></i></div><div id="sc_msg"></div><div id="sc_res"></div>
@@ -131,11 +132,11 @@ textarea{width:100%;height:200px;font-family:ui-monospace,Menlo,Consolas,monospa
 <script>
 const EL={"Fleet":"Στόλος","Total hashrate":"Συνολικός ρυθμός hash","Online":"Συνδεδεμένα","Shares ok / rejected":"Shares αποδεκτά / απορριφθέντα","Warnings":"Προειδοποιήσεις","Per screen":"Ανά οθόνη","Miners":"Miners","Save":"Αποθήκευση","Demo":"Δοκιμή","Copy link":"Αντιγραφή συνδέσμου","Close":"Κλείσιμο",
 "help1":"Ένα miner ανά γραμμή: η διεύθυνση IP ή το όνομά του και προαιρετικά μια ετικέτα. Παράδειγμα:","help2":"Οι διευθύνσεις IP είναι πιο αξιόπιστες (τα κινητά συχνά δεν αναγνωρίζουν ονόματα .local). Δώστε σε κάθε miner σταθερή IP από το router.",
-"Scan network":"Σάρωση δικτύου","Rows on screen":"Σειρές στην οθόνη","Per row":"Ανά σειρά","Find miners on my network":"Εύρεση miners στο δίκτυό μου","Scan":"Σάρωση","Stop":"Διακοπή",
-"help3":"Ο browser δεν βλέπει ονόματα .local μόνος του, γι' αυτό η σάρωση ρωτά μία φορά κάθε διεύθυνση του εύρους, στη θύρα 80. Δώστε το πρόθεμα του δικτύου σας (οι τρεις πρώτοι αριθμοί της διεύθυνσης του router). Μπορείτε να βάλετε πολλά, χωρισμένα με κόμμα.",
-"found":"βρέθηκαν","miner(s)":"miner(s)","scanning":"σάρωση","other web devices (click to add, could be miners with old firmware):":"άλλες συσκευές web (κλικ για προσθήκη, ίσως miners με παλιό firmware):","Added to the list below - press Save.":"Προστέθηκαν στη λίστα παρακάτω - πατήστε Αποθήκευση.","No miners found. Check the prefix, or that the miners run firmware 1.4.0 or newer.":"Δεν βρέθηκαν miners. Ελέγξτε το πρόθεμα ή ότι τα miners έχουν firmware 1.4.0 ή νεότερο.","Invalid prefix":"Μη έγκυρο πρόθεμα","stopped":"διακόπηκε",
-"online":"σε λειτουργία","gentle power mode":"ήπια λειτουργία ισχύος","update firmware":"ενημερώστε το firmware",
-"err_cors":"Το miner απαντά αλλά ο browser μπλοκάρει την ανάγνωση: φορτώστε CRSminer 1.4.0 ή νεότερο","err_timeout":"καμία απάντηση (timeout) - λάθος IP ή miner εκτός δικτύου","err_unreachable":"αδυναμία σύνδεσης - λάθος διεύθυνση ή μπλοκάρισμα δικτύου","connecting":"σύνδεση με pool","offline":"εκτός σύνδεσης","Good":"Καλά","Bad":"Κακά","Best":"Καλύτερο","Temp":"Θερμ.","WiFi":"WiFi","Uptime":"Λειτουργία","Pool diff":"Δυσκ. pool","Pool":"Pool","last start":"τελευταία εκκίνηση","no data yet":"δεν υπάρχουν δεδομένα ακόμη","no miners yet":"Δεν έχουν προστεθεί miners","Add your miners with the Miners button.":"Προσθέστε τα miners σας με το κουμπί Miners.","Try the Demo":"Δοκιμάστε το Demo","busy":"απασχολημένο",
+"ESP32 + Android (80 + 8080)":"ESP32 + Android (80 + 8080)","ESP32 only (80)":"Μόνο ESP32 (80)","Android only (8080)":"Μόνο Android (8080)","Scan network":"Σάρωση δικτύου","Rows on screen":"Σειρές στην οθόνη","Per row":"Ανά σειρά","Find miners on my network":"Εύρεση miners στο δίκτυό μου","Scan":"Σάρωση","Stop":"Διακοπή",
+"help3":"Σάρωση τοπικών διευθύνσεων: θύρα 80 για ESP32 και 8080 για Android CPU miners. Επιλέξτε τις θύρες παρακάτω. Δώστε το πρόθεμα του δικτύου σας (τρεις πρώτοι αριθμοί της IP) και χωρίστε πολλαπλά προθέματα με κόμμα.",
+"found":"βρέθηκαν","miner(s)":"miner(s)","scanning":"σάρωση","other web devices (click to add, could be miners with old firmware):":"άλλες συσκευές web (κλικ για προσθήκη, ίσως miners με παλιό firmware):","Added to the list below - press Save.":"Προστέθηκαν στη λίστα παρακάτω - πατήστε Αποθήκευση.","No miners found. Check the prefix, selected ports and browser access to local HTTP.":"Δεν βρέθηκαν miners. Ελέγξτε το πρόθεμα ή ότι τα miners έχουν firmware 1.4.0 ή νεότερο.","Invalid prefix":"Μη έγκυρο πρόθεμα","stopped":"διακόπηκε",
+"browser blocked":"μπλοκάρισμα browser","online":"σε λειτουργία","gentle power mode":"ήπια λειτουργία ισχύος","update firmware":"ενημερώστε το firmware",
+"err_cors":"Ο browser εμποδίζει την ανάγνωση HTTP (CORS ή άδεια τοπικού δικτύου). Ανοίξτε το HTML τοπικά και ελέγξτε IP/θύρα.","err_timeout":"καμία απάντηση (timeout) - ελέγξτε IP, θύρα και miner","err_unreachable":"αδυναμία σύνδεσης - ελέγξτε IP, δίκτυο και άδειες browser","connecting":"σύνδεση με pool","offline":"εκτός σύνδεσης","Good":"Καλά","Bad":"Κακά","Best":"Καλύτερο","Temp":"Θερμ.","WiFi":"WiFi","Uptime":"Λειτουργία","Pool diff":"Δυσκ. pool","Pool":"Pool","last start":"τελευταία εκκίνηση","no data yet":"δεν υπάρχουν δεδομένα ακόμη","no miners yet":"Δεν έχουν προστεθεί miners","Add your miners with the Miners button.":"Προσθέστε τα miners σας με το κουμπί Miners.","Try the Demo":"Δοκιμάστε το Demo","busy":"απασχολημένο",
 "This page is served over https, so the browser blocks reading http miners. Open the file locally (double-click it) or serve it over http.":"Η σελίδα φορτώθηκε με https και ο browser μπλοκάρει την ανάγνωση των miners (http). Ανοίξτε το αρχείο τοπικά (διπλό κλικ) ή σερβίρετέ το με http.",
 "d":"ημ","h":"ω","m":"λ",
 "SHA self-test failed":"Απέτυχε ο αυτοέλεγχος SHA",
@@ -155,7 +156,7 @@ const $=(q,e=document)=>e.querySelector(q);
 const LS=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:v}catch(e){return d}};
 const LSset=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 let lang=+LS('crsfl_lang',navigator.language&&navigator.language.startsWith('el')?1:0)||0,per=[2,3,4].includes(+LS('crsfl_per',3))?+LS('crsfl_per',3):3,cols=[1,2,3,4].includes(+LS('crsfl_cols',1))?+LS('crsfl_cols',1):1,every=+LS('crsfl_ref',3)||3,demo=false;
-const EN={err_cors:'The miner answers, but the browser blocks reading it: flash CRSminer 1.4.0 or newer on this miner',err_timeout:'no answer (timeout) - wrong IP or miner offline',err_unreachable:'cannot connect - wrong address or blocked network'};
+const EN={err_cors:'Browser blocked this HTTP response (CORS or local network permission). Try opening the HTML locally and check the miner IP/port.',err_timeout:'no answer (timeout) - check IP, port or miner status',err_unreachable:'cannot connect - check network, IP or browser permissions'};
 const t=s=>(lang&&EL[s]!==undefined)?EL[s]:(EN[s]!==undefined?EN[s]:s);
 const si=n=>{const u=['','K','M','G','T','P'];let i=0;while(n>=1000&&i<5){n/=1000;i++}return n.toFixed(n<10?2:1)+u[i]};
 const dur=s=>{const d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return(d?d+t('d')+' ':'')+h+t('h')+' '+m+t('m')};
@@ -192,7 +193,7 @@ const drawCard=m=>{const o=st(m.a),c=o.el;if(!c)return;const s=o.s;
  $('.sub',c).textContent=m.a+(s&&s.mode?'  ·  '+s.mode:'');
  const hr=s&&!off?s.hr:0,sp=si(hr).match(/^([\d.]+)(\D*)$/)||['','0',''];
  $('.hr b',c).textContent=off?'-':sp[1];$('.hr small',c).textContent=off?'':sp[2]+'H/s';
- const p=$('.pill',c);p.className='pill '+mode;p.textContent=t(cors?'update firmware':(mode==='on'?'online':mode==='mid'?'connecting':'offline'));
+ const p=$('.pill',c);p.className='pill '+mode;p.textContent=t(cors?'browser blocked':(mode==='on'?'online':mode==='mid'?'connecting':'offline'));
  const F=(k,v)=>{const e=$('[data-f="'+k+'"]',c);if(e)e.textContent=v};
  if(s){F('acc',s.acc);F('rej',s.rej);F('best',si(s.best));F('pd',s.pdiff>=1?si(s.pdiff):(s.pdiff>0?(+s.pdiff).toPrecision(2):'-'));F('tmp',Math.round(s.temp)+'°C');F('rssi',s.rssi+' dBm');F('up',dur(s.up));F('pool',s.pool)}
  const f=$('.foot',c);
@@ -242,29 +243,31 @@ const startDemo=()=>{demo=true;clearInterval(timer);state.clear();$('#list').inn
 
 // ---------------------------------------------------------------- network scan
 let scanning=false;
-const probe=async ip=>{const c=new AbortController(),to=setTimeout(()=>c.abort(),1500);
- try{const r=await fetch('http://'+ip+'/api/status',{signal:c.signal,cache:'no-store'});const j=await r.json();clearTimeout(to);
-  return(j&&typeof j.hr==='number'&&/^crsminer-/i.test(j.host||''))?{t:'m',ip,s:j}:{t:'x'}}
+const probe=async target=>{const c=new AbortController(),to=setTimeout(()=>c.abort(),1500);
+ try{const r=await fetch('http://'+target+'/api/status',{signal:c.signal,cache:'no-store'});const j=await r.json();clearTimeout(to);
+  return(j&&typeof j.hr==='number'&&/^crsminer-/i.test(j.host||''))?{t:'m',a:target,s:j}:{t:'x'}}
  catch(e){clearTimeout(to);if(e&&e.name==='AbortError')return{t:'x'};
-  try{const c2=new AbortController(),t2=setTimeout(()=>c2.abort(),1500);await fetch('http://'+ip+'/api/status',{mode:'no-cors',signal:c2.signal,cache:'no-store'});clearTimeout(t2);return{t:'w',ip}}catch(e2){return{t:'x'}}}};
+  try{const c2=new AbortController(),t2=setTimeout(()=>c2.abort(),1500);await fetch('http://'+target+'/api/status',{mode:'no-cors',signal:c2.signal,cache:'no-store'});clearTimeout(t2);return{t:'w',a:target}}catch(e2){return{t:'x'}}}};
 const guessPrefix=()=>{const set=new Set();miners.forEach(m=>{const k=m.a.match(/^(\d+\.\d+\.\d+)\.\d+/);if(k)set.add(k[1])});const h=location.hostname.match(/^(\d+\.\d+\.\d+)\.\d+$/);if(h)set.add(h[1]);return set.size?[...set].join(', '):'192.168.1'};
 const addToText=(ip,label)=>{const cur=parseList($('#txt').value);if(cur.some(m=>m.a===ip))return;cur.push({a:ip,n:label||''});$('#txt').value=fmtList(cur)};
 const runScan=async()=>{if(scanning)return;
  const pre=$('#sc_pre').value.split(/[\s,;]+/).filter(Boolean),from=Math.max(1,+$('#sc_from').value||1),to=Math.min(254,+$('#sc_to').value||254);
  if(!pre.length||pre.some(p=>!/^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(p))){$('#sc_msg').textContent=t('Invalid prefix');return}
- const jobs=[];pre.forEach(p=>{for(let i=from;i<=to;i++)jobs.push(p+'.'+i)});
+ const mode=$('#sc_ports').value;const ports=mode==='android'?[':8080']:mode==='esp'?['']:['',':8080'];
+ const jobs=[];pre.forEach(p=>{for(let i=from;i<=to;i++)for(const port of ports)jobs.push(p+'.'+i+port)});
  scanning=true;$('#sc_go').style.display='none';$('#sc_stop').style.display='';$('#sc_bar').style.display='block';$('#sc_res').innerHTML='';
  const found=[],other=[];let k=0,done=0;
  const bar=$('#sc_bar i'),msg=$('#sc_msg');
- const worker=async()=>{while(scanning&&k<jobs.length){const ip=jobs[k++];const r=await probe(ip);
-   if(r.t==='m'){found.push(r);const ch=document.createElement('span');ch.className='chip';ch.textContent=r.s.host.replace('.local','')+'  '+ip;$('#sc_res').appendChild(ch);addToText(ip,'')}
-   else if(r.t==='w')other.push(ip);
+ const worker=async()=>{while(scanning&&k<jobs.length){const addr=jobs[k++];const r=await probe(addr);
+   if(r.t==='m'){found.push(r);const ch=document.createElement('span');ch.className='chip';ch.textContent=r.s.host.replace('.local','')+'  '+r.a;$('#sc_res').appendChild(ch);addToText(r.a,'')}
+   else if(r.t==='w')other.push(r.a);
    done++;bar.style.width=(100*done/jobs.length)+'%';msg.textContent=t('scanning')+' '+done+' / '+jobs.length+' · '+t('found')+' '+found.length+' '+t('miner(s)')}};
  await Promise.all(Array.from({length:8},worker));
  const stopped=!scanning;scanning=false;$('#sc_go').style.display='';$('#sc_stop').style.display='none';
- msg.textContent=(stopped&&done<jobs.length?t('stopped')+' · ':'')+t('found')+' '+found.length+' '+t('miner(s)')+'. '+(found.length?t('Added to the list below - press Save.'):t('No miners found. Check the prefix, or that the miners run firmware 1.4.0 or newer.'));
+ msg.textContent=(stopped&&done<jobs.length?t('stopped')+' · ':'')+t('found')+' '+found.length+' '+t('miner(s)')+'. '+(found.length?t('Added to the list below - press Save.'):t('No miners found. Check the prefix, selected ports and browser access to local HTTP.'));
  if(other.length){const h=document.createElement('div');h.style.cssText='width:100%;font-size:12px;color:var(--mut)';h.textContent=t('other web devices (click to add, could be miners with old firmware):');$('#sc_res').appendChild(h);
   other.forEach(ip=>{const ch=document.createElement('span');ch.className='chip o';ch.textContent=ip;ch.onclick=()=>{addToText(ip,'');ch.style.opacity=.4};$('#sc_res').appendChild(ch)})}};
+$('#sc_ports').value=LS('crsfl_scanports','both');$('#sc_ports').onchange=()=>LSset('crsfl_scanports',$('#sc_ports').value);
 $('#sc_go').onclick=runScan;$('#sc_stop').onclick=()=>{scanning=false};
 $('#scanbtn').onclick=()=>{$('#txt').value=fmtList(demo?[]:miners);$('#sc_pre').value=guessPrefix();$('#dlg').showModal();runScan()};
 
