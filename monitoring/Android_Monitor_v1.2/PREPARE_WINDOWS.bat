@@ -11,7 +11,7 @@ echo.
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0tools\prepare-gradle.ps1"
 if errorlevel 1 (
     echo.
-    echo PREPARATION FAILED. Copy the complete error above to AI.
+    echo PREPARATION FAILED. Review the complete error above.
     pause
     exit /b 1
 )

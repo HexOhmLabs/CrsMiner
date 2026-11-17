@@ -63,4 +63,4 @@ The sailor mascot on the CYD display is an original drawing made for this projec
 
 ## Development
 
-Developed with the assistance of AI; the hardware behaviour was verified on real boards by the project owner.
+The hardware behaviour of the supported builds was verified on real boards by the project owner.

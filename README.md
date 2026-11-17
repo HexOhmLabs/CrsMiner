@@ -151,4 +151,4 @@ The [CRSminer for Android CPU mining source](firmware/Android_CPU_Miner_v0.4/) i
 
 [Flashing guide](docs/FLASHING.md) · [Monitoring comparison](docs/MONITORING.md) · [Included releases](docs/VERSIONS_AND_STATUS.md) · [Privacy and safe sharing](docs/SECURITY_AND_PRIVACY.md) · [First publication checklist](docs/RELEASE_CHECKLIST.md)
 
-© 2026 **HexOhm** .
+© 2026 **HexOhm**.
