@@ -2,11 +2,11 @@
 
 [**English — README.md**](README.md) · [**Εγκατάσταση ESP32**](docs/ESP32_USER_GUIDE_GR.md) · [**Εγκατάσταση CYD**](docs/CYD_USER_GUIDE_GR.md) · [**Raspberry Pi + USB ASIC**](firmware/Raspberry_Pi_USB_ASIC/README_GR.md) · [**Android CPU miner**](firmware/Android_CPU_Miner_v0.4/README_GR.md) · [**Εργαλεία monitoring**](docs/MONITORING_GR.md)
 
-**Οικογένεια συσκευών πραγματικής εξόρυξης SHA-256d** με ESP32, CYD, Raspberry Pi + USB Block Erupter και Android CPU miner, καθώς και εφαρμογές παρακολούθησης για Windows, Android και browser.
+**Οικογένεια συσκευών πραγματικής εξόρυξης SHA-256d** με ESP32, CYD, Raspberry Pi + USB Block Erupter, Android CPU miner και Windows PC CPU miner, καθώς και εφαρμογές παρακολούθησης για Windows, Android και browser.
 
 <p align="center"><img src="images/esp32-beautified.png" width="54%" alt="ESP32 CRSminer" /> <img src="images/cyd-landscape-beautified-sanitized.png" width="44%" alt="CYD CRSminer" /></p>
 
-**Τέσσερις υλοποιήσεις mining, μία οικογένεια HexOhm.** Οι καλλωπισμένες φωτογραφίες είναι εικόνες παρουσίασης. Για σύνδεση και συμβατότητα ακολουθήστε τις οδηγίες κάθε πλακέτας, όχι τις λεπτομέρειες που τυχόν φαίνονται στις εικόνες.
+**Πέντε υλοποιήσεις mining, μία οικογένεια HexOhm.** Οι καλλωπισμένες φωτογραφίες είναι εικόνες παρουσίασης. Για σύνδεση και συμβατότητα ακολουθήστε τις οδηγίες κάθε πλακέτας, όχι τις λεπτομέρειες που τυχόν φαίνονται στις εικόνες.
 
 ## Επιλέξτε miner
 
@@ -16,8 +16,9 @@
 | **CYD με οθόνη αφής** | `CRSminer_CYD-18` | [Οδηγός](docs/CYD_USER_GUIDE_GR.md) · [Arduino `.ino`](firmware/CYD/source/CRSminer_CYD/CRSminer_CYD.ino) | [Πλήρες `.bin`](firmware/CYD/merged/HexOhm_CRSminer_CYD_Final_Merged.bin) |
 | **Raspberry Pi + USB Block Erupter** | CRSminer Pi, ~300 MH/s αναφερόμενα | [Αναλυτική εγκατάσταση στα ελληνικά](firmware/Raspberry_Pi_USB_ASIC/README_GR.md) | [Τέσσερα αρχεία εκκίνησης](firmware/Raspberry_Pi_USB_ASIC/boot/) |
 | **Android CPU miner** | `0.4.0-dev`, ~6,6 MH/s παρατηρήθηκαν | [Κώδικας Android Studio και οδηγός](firmware/Android_CPU_Miner_v0.4/README_GR.md) | [Debug APK](firmware/Android_CPU_Miner_v0.4/apk/CRSminer_for_Android_v0.4.0-dev_DEBUG.apk) |
+| **Windows PC CPU miner** | `v0.2.3` · SHA-NI / AVX2 / scalar C | [Κώδικας και οδηγίες](firmware/Windows_CPU_Miner_v0.2.3/README_GR.md) | Δημιουργία EXE στα Windows x64 με `BUILD_WINDOWS.bat` |
 
-Ο κώδικας των τεσσάρων miners βρίσκεται στο [`firmware/`](firmware/README_GR.md). Οι ξεχωριστές εφαρμογές παρακολούθησης είναι στο [`monitoring/`](docs/MONITORING_GR.md).
+Ο κώδικας των πέντε miners βρίσκεται στο [`firmware/`](firmware/README_GR.md). Οι ξεχωριστές εφαρμογές παρακολούθησης είναι στο [`monitoring/`](docs/MONITORING_GR.md).
 
 ## Εγκατάσταση ESP32/CYD
 
@@ -50,6 +51,12 @@
 <img src="images/android-cpu-miner-v0_4-sanitized.jpg" width="310" alt="Android CRSminer πραγματικό CPU mining" />
 
 Το **CRSminer for Android v0.4.0** δεν είναι η εφαρμογή παρακολούθησης. Εξορύσσει με τη CPU του κινητού μέσω native C++/JNI και Stratum V1, με ρυθμιζόμενα threads, pool/solo pool, worker, wallet, foreground service, widget και endpoint `/api/status` στη **θύρα 8080**. Περιλαμβάνεται [ολόκληρο το Android Studio project](firmware/Android_CPU_Miner_v0.4/README_GR.md) και **debug APK**, όχι υπογεγραμμένο production release. Το CPU mining επιβαρύνει τη μπαταρία και παράγει θερμότητα.
+
+## CRSminer PC v0.2.3 — Mining σε Windows
+
+[**Πηγαίος κώδικας, Windows DLL και EXE builder**](firmware/Windows_CPU_Miner_v0.2.3/README_GR.md) · [English README](firmware/Windows_CPU_Miner_v0.2.3/README.md)
+
+Πραγματικό SHA-256d mining σε Windows x64 με SHA-NI/AVX2/scalar, ανεξάρτητη ένταση ανά λογικό CPU, Background/Dedicated, προαιρετικά CSV diagnostics και τοπικό API `:8080/api/status`. Δοκιμάστηκε σε Ryzen 3 και AMD E-350 με αποδεκτά shares και επιτυχή εμφάνιση στον browser Fleet Scanner. Περιλαμβάνεται **πηγαίος κώδικας και builder**, όχι έτοιμο υπογεγραμμένο EXE.
 
 ## Εφαρμογές παρακολούθησης
 

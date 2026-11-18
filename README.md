@@ -2,7 +2,7 @@
 
 **🇬🇷 Ελληνική τεκμηρίωση:** [Πλήρης οδηγός στα ελληνικά](README_GR.md) · [ESP32](docs/ESP32_USER_GUIDE_GR.md) · [CYD](docs/CYD_USER_GUIDE_GR.md) · [Raspberry Pi](firmware/Raspberry_Pi_USB_ASIC/README_GR.md) · [Android miner](firmware/Android_CPU_Miner_v0.4/README_GR.md) · [Monitors](docs/MONITORING_GR.md)
 
-**Real SHA-256d mining on ESP32, CYD, Android CPU and Raspberry Pi + USB Block Erupter, with companion fleet monitors for Windows, Android and the browser.**
+**Real SHA-256d mining on ESP32, CYD, Android CPU, Windows PC CPU, and Raspberry Pi + USB Block Erupter, with companion fleet monitors for Windows, Android and the browser.**
 
 [**Get started**](#choose-your-miner) · [**Build the Raspberry Pi miner**](firmware/Raspberry_Pi_USB_ASIC/README.md) · [**Flash ESP32/CYD in your browser**](docs/FLASHING.md) · [**ESP32 operating guide**](docs/ESP32_USER_GUIDE.md) · [**CYD touch & screen guide**](docs/CYD_USER_GUIDE.md) · [**Οδηγίες στα Ελληνικά**](docs/ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ_GR.md) · [**Android CPU miner**](#crsminer-for-android--cpu-mining) · [**Monitor your fleet**](#local-monitoring) · [**Implementation gallery**](docs/IMPLEMENTATIONS.md) · [**Android monitor versions**](monitoring/ANDROID_MONITOR_VERSIONS.md) · [**Source builds**](docs/BUILD_FROM_SOURCE.md)
 
@@ -11,7 +11,9 @@
   <img src="images/cyd-landscape-beautified-sanitized.png" width="44%" alt="HexOhm CYD mining display studio presentation" />
 </p>
 
-<p align="center"><strong>Four working mining platforms · One HexOhm family · Local fleet monitoring</strong></p>
+<p align="center"><strong>Five working mining platforms · One HexOhm family · Local fleet monitoring</strong></p>
+
+[**Windows PC CPU miner v0.2.3**](firmware/Windows_CPU_Miner_v0.2.3/README.md) · [**Οδηγίες στα Ελληνικά**](firmware/Windows_CPU_Miner_v0.2.3/README_GR.md)
 
 **Project source and downloads.** The ESP32, CYD, Raspberry Pi, Android CPU miner and monitoring applications are the working editions confirmed by the project owner. Additional ESP board variants are outside this release. Source code and binaries are provided together wherever relevant.
 
@@ -19,7 +21,7 @@
 
 ## Choose your miner
 
-**All four mining implementations are under [`firmware/`](firmware/README.md)**, including the Raspberry Pi USB ASIC scripts and the complete Android Studio CPU miner project. Monitoring applications are kept separately in [`monitoring/`](monitoring/).
+**All five mining implementations are under [`firmware/`](firmware/README.md)**, including the Raspberry Pi USB ASIC scripts and the complete Android Studio CPU miner project. Monitoring applications are kept separately in [`monitoring/`](monitoring/).
 
 | Mining device | Working edition | Source / setup | Ready-to-use files |
 |---|---|---|---|
@@ -27,6 +29,7 @@
 | CYD display ESP32 | `CRSminer_CYD-18` | [Arduino sketch](firmware/CYD/source/CRSminer_CYD/CRSminer_CYD.ino) | [Merged firmware](firmware/CYD/merged/HexOhm_CRSminer_CYD_Final_Merged.bin) |
 | Raspberry Pi + USB Block Erupter | `CRSminer Pi` · ~300 MH/s reported | [Complete installation guide & scripts](firmware/Raspberry_Pi_USB_ASIC/README.md) | [SD-card boot files](firmware/Raspberry_Pi_USB_ASIC/boot/) |
 | Android phone CPU miner | `v0.4.0` · ~6.6 MH/s observed | [Complete Android Studio source](firmware/Android_CPU_Miner_v0.4/) | [Debug APK](firmware/Android_CPU_Miner_v0.4/apk/CRSminer_for_Android_v0.4.0-dev_DEBUG.apk) |
+| Windows PC CPU miner | `v0.2.3` · SHA-NI / AVX2 / scalar C | [Source, builder & guide](firmware/Windows_CPU_Miner_v0.2.3/README.md) | Build `HexOhm_CRSminer_PC_v0.2.3.exe` locally on Windows x64; no prebuilt EXE |
 
 | ESP32 | CYD (Cheap Yellow Display) |
 |---|---|
@@ -98,6 +101,12 @@ Read the **[full illustrated-by-tables flashing instructions](docs/FLASHING.md)*
 <img src="images/cyd-portrait-beautified-sanitized.png" width="360" alt="Portrait studio photo of CYD mining dashboard"/>
 
 The CYD variant adds an on-device screen and real-time mining metrics. The example display presentation shows status, worker/miner name, hashrate, share counters, uptime and difficulty. Check compatibility with your exact CYD variant before flashing.
+
+## Windows PC CPU miner — v0.2.3
+
+[**CRSminer PC source and Windows EXE builder**](firmware/Windows_CPU_Miner_v0.2.3/README.md) · [Ελληνικός οδηγός](firmware/Windows_CPU_Miner_v0.2.3/README_GR.md)
+
+A real SHA-256d CPU miner for old and modern **Windows x64** PCs, distinct from the Windows fleet monitor. Uses native SHA-NI, AVX2 or scalar engines when supported, individual logical-CPU effort, Background/Dedicated priority modes, optional CSV diagnostics, and a local `:8080/api/status` Fleet API. The owner's Ryzen 3 and AMD E-350 laptops both produced accepted pool shares and were visible in the browser Fleet Scanner. **It is source + builder only; not a signed or precompiled EXE.**
 
 ## Local monitoring
 
