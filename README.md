@@ -106,7 +106,7 @@ The CYD variant adds an on-device screen and real-time mining metrics. The examp
 
 [**CRSminer PC source and Windows EXE builder**](firmware/Windows_CPU_Miner_v0.2.3/README.md) · [Ελληνικός οδηγός](firmware/Windows_CPU_Miner_v0.2.3/README_GR.md)
 
-A real SHA-256d CPU miner for old and modern **Windows x64** PCs, distinct from the Windows fleet monitor. Uses native SHA-NI, AVX2 or scalar engines when supported, individual logical-CPU effort, Background/Dedicated priority modes, optional CSV diagnostics, and a local `:8080/api/status` Fleet API. The owner's Ryzen 3 and AMD E-350 laptops both produced accepted pool shares and were visible in the browser Fleet Scanner. **It is source + builder only; Precompiled EXE for your convenience.**
+A real SHA-256d CPU miner for old and modern **Windows x64** PCs, distinct from the Windows fleet monitor. Uses native SHA-NI, AVX2 or scalar engines when supported, individual logical-CPU effort, Background/Dedicated priority modes, optional CSV diagnostics, and a local `:8080/api/status` Fleet API. The owner's Ryzen 3 and AMD E-350 laptops both produced accepted pool shares and were visible in the browser Fleet Scanner. **It is source + builder and precompiled EXE for your convenience.**
 
 ## Local monitoring
 
